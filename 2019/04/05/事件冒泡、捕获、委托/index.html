@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7%E5%93%A6.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B72.png">
-<meta property="og:updated_time" content="2019-07-20T14:21:08.112Z">
+<meta property="og:updated_time" content="2019-07-23T10:58:35.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件委托、事件冒泡、事件捕获">
 <meta name="twitter:description" content="事件捕获阶段：事件从最上一级标签开始往下查找，直到捕获到事件目标(target)。 事件冒泡阶段：事件从事件目标(target)开始，往上冒泡直到页面的最上一级标签。 用图示表示如下：  一、冒泡事件：事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。通俗来讲就是，就是当设定了多个div的嵌套时；即建立了父子关系，当父div与子div共同加入了onclick事件时">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 22:21:08" itemprop="dateModified" datetime="2019-07-20T22:21:08+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 18:58:35" itemprop="dateModified" datetime="2019-07-23T18:58:35+08:00">2019-07-23</time>
               
             
           </span>
@@ -453,11 +453,11 @@
 
       
         <hr>
-<p><font color="red">事件捕获阶段</font>：事件从最上一级标签开始往下查找，直到捕获到事件目标(target)。</p>
-<p><font color="red">事件冒泡阶段</font>：事件从事件目标(target)开始，往上冒泡直到页面的最上一级标签。</p>
+<p><font color="red"><strong>事件捕获阶段</strong></font>：事件从最上一级标签开始往下查找，直到捕获到事件目标(target)。</p>
+<p><font color="red"><strong>事件冒泡阶段</strong></font>：事件从事件目标(target)开始，往上冒泡直到页面的最上一级标签。</p>
 <p>用图示表示如下：</p>
 <p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7%E5%93%A6.png" alt></p>
-<h1 id="一、冒泡事件："><a href="#一、冒泡事件：" class="headerlink" title="一、冒泡事件："></a>一、冒泡事件：</h1><p>事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。通俗来讲就是，就是当设定了多个div的嵌套时；即建立了父子关系，当父div与子div共同加入了onclick事件时，当触发了子div的onclick事件后，子div进行相应的js操作，但是父div的onclick事件同样会被触发</p>
+<h3 id="一、冒泡事件："><a href="#一、冒泡事件：" class="headerlink" title="一、冒泡事件："></a>一、冒泡事件：</h3><p>事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。通俗来讲就是，就是当设定了多个div的嵌套时；即建立了父子关系，当父div与子div共同加入了onclick事件时，当触发了子div的onclick事件后，子div进行相应的js操作，但是父div的onclick事件同样会被触发</p>
 <pre><code>&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -501,7 +501,7 @@
 &lt;/html&gt;
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B72.png" alt></p>
 <p>测试结果:点击div3时，依次弹出div3,div2,div1。</p>
-<h2 id="1-1阻止冒泡事件"><a href="#1-1阻止冒泡事件" class="headerlink" title="1.1阻止冒泡事件"></a>1.1阻止冒泡事件</h2><p>阻止冒泡几件有个浏览器的兼容问题：</p>
+<h4 id="1-1阻止冒泡事件"><a href="#1-1阻止冒泡事件" class="headerlink" title="1.1阻止冒泡事件"></a>1.1阻止冒泡事件</h4><p>阻止冒泡几件有个浏览器的兼容问题：</p>
 <p>IE阻止冒泡：ev.canelBubble</p>
 <p>非IE阻止冒泡：ev:stopPropagation</p>
 <pre><code>function bubbles(e){
@@ -515,7 +515,7 @@
   }
   console.log(&quot;最底层盒子被点击了&quot;)
 }
-</code></pre><h1 id="二、事件捕获"><a href="#二、事件捕获" class="headerlink" title="二、事件捕获"></a>二、事件捕获</h1><p>从顶层元素到目标元素或者从目标元素到顶层元素，和事件冒泡是一个相反的过程。事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。</p>
+</code></pre><h3 id="二、事件捕获"><a href="#二、事件捕获" class="headerlink" title="二、事件捕获"></a>二、事件捕获</h3><p>​        从顶层元素到目标元素或者从目标元素到顶层元素，和事件冒泡是一个相反的过程。事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。</p>
 <p>代码更改如下：</p>
 <pre><code>&lt;script&gt;
     window.onload=function (){
@@ -705,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、冒泡事件："><span class="nav-number">1.</span> <span class="nav-text">一、冒泡事件：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1阻止冒泡事件"><span class="nav-number">1.1.</span> <span class="nav-text">1.1阻止冒泡事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、事件捕获"><span class="nav-number">2.</span> <span class="nav-text">二、事件捕获</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、冒泡事件："><span class="nav-number">1.</span> <span class="nav-text">一、冒泡事件：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1阻止冒泡事件"><span class="nav-number">1.1.</span> <span class="nav-text">1.1阻止冒泡事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、事件捕获"><span class="nav-number">2.</span> <span class="nav-text">二、事件捕获</span></a></li></ol></div>
             
 
           </div>

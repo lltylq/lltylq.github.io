@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E8%B7%A8%E5%9F%9F1.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E8%B7%A8%E5%9F%9F%E6%8A%A5%E9%94%99.png">
-<meta property="og:updated_time" content="2019-07-20T14:27:48.410Z">
+<meta property="og:updated_time" content="2019-07-23T10:59:44.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域请求方法">
 <meta name="twitter:description" content="一、为什么出现跨域的问题出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 22:27:48" itemprop="dateModified" datetime="2019-07-20T22:27:48+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 18:59:44" itemprop="dateModified" datetime="2019-07-23T18:59:44+08:00">2019-07-23</time>
               
             
           </span>
@@ -453,14 +453,14 @@
 
       
         <hr>
-<h1 id="一、为什么出现跨域的问题"><a href="#一、为什么出现跨域的问题" class="headerlink" title="一、为什么出现跨域的问题"></a>一、为什么出现跨域的问题</h1><p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议（protocol），主机（host）和端口号（port）</p>
-<h1 id="二、什么是跨域"><a href="#二、什么是跨域" class="headerlink" title="二、什么是跨域"></a>二、什么是跨域</h1><p>当一个请求url的协议、域名、端口三者之间任意一个与当前页面url不同即为跨域</p>
+<h3 id="一、为什么出现跨域的问题"><a href="#一、为什么出现跨域的问题" class="headerlink" title="一、为什么出现跨域的问题"></a>一、为什么出现跨域的问题</h3><p>出于浏览器的同源策略限制。同源策略（Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，则浏览器的正常功能可能都会受到影响。可以说Web是构建在同源策略基础之上的，浏览器只是针对同源策略的一种实现。同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议（protocol），主机（host）和端口号（port）</p>
+<h3 id="二、什么是跨域"><a href="#二、什么是跨域" class="headerlink" title="二、什么是跨域"></a>二、什么是跨域</h3><p>当一个请求url的协议、域名、端口三者之间任意一个与当前页面url不同即为跨域</p>
 <p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E8%B7%A8%E5%9F%9F1.png" alt></p>
-<h1 id="三、非同源限制"><a href="#三、非同源限制" class="headerlink" title="三、非同源限制"></a>三、非同源限制</h1><p>【1】无法读取非同源网页的 Cookie、LocalStorage 和 IndexedDB</p>
+<h3 id="三、非同源限制"><a href="#三、非同源限制" class="headerlink" title="三、非同源限制"></a>三、非同源限制</h3><p>【1】无法读取非同源网页的 Cookie、LocalStorage 和 IndexedDB</p>
 <p>【2】无法接触非同源网页的 DOM</p>
 <p>【3】无法向非同源地址发送 AJAX 请求</p>
 <p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E8%B7%A8%E5%9F%9F%E6%8A%A5%E9%94%99.png" alt></p>
-<h1 id="四、跨域解决方法"><a href="#四、跨域解决方法" class="headerlink" title="四、跨域解决方法"></a>四、跨域解决方法</h1><h2 id="1、JSONP"><a href="#1、JSONP" class="headerlink" title="1、JSONP"></a>1、JSONP</h2><ul>
+<h3 id="四、跨域解决方法"><a href="#四、跨域解决方法" class="headerlink" title="四、跨域解决方法"></a>四、跨域解决方法</h3><h4 id="1、JSONP"><a href="#1、JSONP" class="headerlink" title="1、JSONP"></a>1、JSONP</h4><ul>
 <li>jsonp原理</li>
 </ul>
 <p>jsonp,即json+padding,动态创建script标签,利用script标签的src属性可以获取任何域下的js脚本,通过这个特性(也可以说漏洞),服务器端不在返货json格式,而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域。</p>
@@ -472,7 +472,7 @@
 <li>缺点</li>
 </ul>
 <p>它只支持GET请求而不支持POST等其它类型的HTTP请求；它只支持跨域HTTP请求这种情况。</p>
-<h2 id="通过jQuery的-ajax实现跨域的代码参考如下："><a href="#通过jQuery的-ajax实现跨域的代码参考如下：" class="headerlink" title="通过jQuery的$.ajax实现跨域的代码参考如下："></a>通过jQuery的$.ajax实现跨域的代码参考如下：</h2><pre><code>    &lt;!DOCTYPE html&gt;
+<h3 id="通过jQuery的-ajax实现跨域的代码参考如下："><a href="#通过jQuery的-ajax实现跨域的代码参考如下：" class="headerlink" title="通过jQuery的$.ajax实现跨域的代码参考如下："></a>通过jQuery的$.ajax实现跨域的代码参考如下：</h3><pre><code>    &lt;!DOCTYPE html&gt;
         &lt;html lang=&quot;en&quot;&gt;
         &lt;head&gt;
 &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -508,7 +508,7 @@ $(function(){
 });
     &lt;/script&gt;
     &lt;/html&gt;
-</code></pre><h2 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h2><ul>
+</code></pre><h4 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h4><ul>
 <li>优点</li>
 </ul>
 <p>CORS支持所有类型的HTTP请求，功能完善。</p>
@@ -714,7 +714,7 @@ if (!xhr) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、为什么出现跨域的问题"><span class="nav-number">1.</span> <span class="nav-text">一、为什么出现跨域的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、什么是跨域"><span class="nav-number">2.</span> <span class="nav-text">二、什么是跨域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、非同源限制"><span class="nav-number">3.</span> <span class="nav-text">三、非同源限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、跨域解决方法"><span class="nav-number">4.</span> <span class="nav-text">四、跨域解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">1、JSONP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过jQuery的-ajax实现跨域的代码参考如下："><span class="nav-number">4.2.</span> <span class="nav-text">通过jQuery的$.ajax实现跨域的代码参考如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、CORS"><span class="nav-number">4.3.</span> <span class="nav-text">2、CORS</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、为什么出现跨域的问题"><span class="nav-number">1.</span> <span class="nav-text">一、为什么出现跨域的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、什么是跨域"><span class="nav-number">2.</span> <span class="nav-text">二、什么是跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、非同源限制"><span class="nav-number">3.</span> <span class="nav-text">三、非同源限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、跨域解决方法"><span class="nav-number">4.</span> <span class="nav-text">四、跨域解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">1、JSONP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过jQuery的-ajax实现跨域的代码参考如下："><span class="nav-number">5.</span> <span class="nav-text">通过jQuery的$.ajax实现跨域的代码参考如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2、CORS"><span class="nav-number">5.1.</span> <span class="nav-text">2、CORS</span></a></li></ol></li></ol></div>
             
 
           </div>

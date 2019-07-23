@@ -98,19 +98,19 @@
 
 
 
-  <meta name="description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+  <meta name="description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性​        call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 cal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js继承机制">
 <meta property="og:url" content="https://lltylq.github.io/2019/03/28/js核心继承的理解/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+<meta property="og:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性​        call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 cal">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%8E%9F%E5%9E%8B%E9%93%BE.png">
-<meta property="og:updated_time" content="2019-07-20T14:09:58.362Z">
+<meta property="og:updated_time" content="2019-07-23T10:55:16.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js继承机制">
-<meta name="twitter:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+<meta name="twitter:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性​        call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 cal">
 <meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png">
 
 
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 22:09:58" itemprop="dateModified" datetime="2019-07-20T22:09:58+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 18:55:16" itemprop="dateModified" datetime="2019-07-23T18:55:16+08:00">2019-07-23</time>
               
             
           </span>
@@ -452,9 +452,8 @@
       
 
       
-        <p>ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), <font color="red">call 和 apply</font> 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。</p>
-<p>1、首先先讲讲call的继承属性</p>
-<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。</p>
+        <p>ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), <font color="red"><strong>call 和 apply</strong></font> 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。</p>
+<h3 id="1、首先先讲讲call的继承属性"><a href="#1、首先先讲讲call的继承属性" class="headerlink" title="1、首先先讲讲call的继承属性"></a>1、首先先讲讲call的继承属性</h3><p>​        <strong>call() 方法</strong>使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。</p>
 <p>在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继承，类似于 Java 中的写法。下例中，使用 Food 和 Toy 构造函数创建的对象实例都会拥有在 Product 构造函数中添加的 name 属性和 price 属性,但 category 属性是在各自的构造函数中定义的。（下面代码中toy和food分别继承了produce的name和price的属性）</p>
 <pre><code>function Product(name, price) {
   this.name = name;
@@ -479,7 +478,7 @@ var fun = new Toy(&apos;robot&apos;, 40);
 Product.call(obj,&apos;张三&apos;,55)
 console.log(obj)
 </code></pre><p>我们之前讲过原型的优先级是比较低的，其实也是原型链的原因，对象会首先在自己的地盘找，找不到才会从原型链上找，而且最外层的原型链是object，所以上面的意思其实下面就是这样的：</p>
-<p>1 拷贝继承</p>
+<p><strong>2、拷贝继承</strong></p>
 <p>首先来看个栗子：父类有属性name,age， 方法show,子类有属性name,age,sex，怎么能让子类直接继承父类的属性和方法呢？</p>
 <p>对象复制会存在引用问题，也就是说现在两个对象指向的是同一个地址，其中一个原型的一些东西的更改会影响另一个，这肯定不是我们所希望的。所以我们通过拷贝赋值，来避免引用。</p>
 <pre><code>function Create(name,age){ 
@@ -502,8 +501,7 @@ console.log(obj)
                obj1[attr] = obj2[attr];
          }
     }
-</code></pre><p>3 类式继承（利用构造函数继承，一句话即可完成继承）</p>
-<pre><code>function Aaa(){   //父类
+</code></pre><h3 id="3-类式继承（利用构造函数继承，一句话即可完成继承）"><a href="#3-类式继承（利用构造函数继承，一句话即可完成继承）" class="headerlink" title="3 类式继承（利用构造函数继承，一句话即可完成继承）"></a>3 类式继承（利用构造函数继承，一句话即可完成继承）</h3><pre><code>function Aaa(){   //父类
     this.name = [1,2,3];
 }    
 Aaa.prototype.showName = function(){
@@ -522,8 +520,7 @@ alert(b2.name) // [1,2,3,4]  由此可见属性存在引用
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png" alt></p>
 <p>Bbb.prototype = new Aaa(); 这句话，使得图上的a1和Bbb的原型指向了同一个地方，所以当指向b1.showName();这句的时候，它现在自己下寻找有没有这个方法，没有就通过原型链去原型下找，发现也没有，又通过原型链去父级那边找，最终就找到了。</p>
 <hr>
-<p>4 对象继承</p>
-<p>从本质上讲，object()对传入其中的对象执行了一次浅复制</p>
+<h3 id="4-对象继承"><a href="#4-对象继承" class="headerlink" title="4 对象继承"></a>4 对象继承</h3><p>从本质上讲，object()对传入其中的对象执行了一次浅复制</p>
 <pre><code>var person = {
     name:&apos;Annika&apos;,
     friendes:[&apos;Alice&apos;,&apos;Joyce&apos;]
@@ -554,8 +551,7 @@ var anotherPerson = object.create(person,{
 console.log(anotherPerson.name);   \\Greg
 </code></pre><p>ES5的继承可以用下图来概括：</p>
 <p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt></p>
-<p>5 <font color="red"><strong>es6继承</strong></font></p>
-<p>ES6 class的继承与java的继承大同小异，如果学过java的话应该很容易理解，都是通过extends关键字继承。</p>
+<h3 id="5-es6继承"><a href="#5-es6继承" class="headerlink" title="5 es6继承"></a>5 <font color="red"><strong>es6继承</strong></font></h3><p>ES6 class的继承与java的继承大同小异，如果学过java的话应该很容易理解，都是通过extends关键字继承。</p>
 <pre><code>class Animal{
     constructor(color){
         this.color = color;
@@ -639,8 +635,8 @@ class Bear extends Animal{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lltylq.github.io/2019/03/28/原型和原型链/" rel="next" title="原型和原型链的理解">
-                <i class="fa fa-chevron-left"></i> 原型和原型链的理解
+              <a href="/lltylq.github.io/2019/03/26/npm包管理器/" rel="next" title="深入了解为啥需要npm">
+                <i class="fa fa-chevron-left"></i> 深入了解为啥需要npm
               </a>
             
           </div>
@@ -649,8 +645,8 @@ class Bear extends Animal{
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/lltylq.github.io/2019/03/28/es6 理解/" rel="prev" title="es6重点的理解">
-                es6重点的理解 <i class="fa fa-chevron-right"></i>
+              <a href="/lltylq.github.io/2019/03/28/原型和原型链/" rel="prev" title="原型和原型链的理解">
+                原型和原型链的理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -695,8 +691,17 @@ class Bear extends Animal{
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -759,6 +764,23 @@ class Bear extends Animal{
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、首先先讲讲call的继承属性"><span class="nav-number">1.</span> <span class="nav-text">1、首先先讲讲call的继承属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-类式继承（利用构造函数继承，一句话即可完成继承）"><span class="nav-number">2.</span> <span class="nav-text">3 类式继承（利用构造函数继承，一句话即可完成继承）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-对象继承"><span class="nav-number">3.</span> <span class="nav-text">4 对象继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-es6继承"><span class="nav-number">4.</span> <span class="nav-text">5 es6继承</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

@@ -98,17 +98,17 @@
 
 
 
-  <meta name="description" content="一.ES5中查询和设置属性的API 1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，">
+  <meta name="description" content="一.ES5中查询和设置属性的API1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，它">
 <meta property="og:type" content="article">
 <meta property="og:title" content="属性的特性">
 <meta property="og:url" content="https://lltylq.github.io/2019/03/30/Object（属性）的特性/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="一.ES5中查询和设置属性的API 1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，">
+<meta property="og:description" content="一.ES5中查询和设置属性的API1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，它">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-16T11:13:27.929Z">
+<meta property="og:updated_time" content="2019-07-23T10:55:46.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="属性的特性">
-<meta name="twitter:description" content="一.ES5中查询和设置属性的API 1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，">
+<meta name="twitter:description" content="一.ES5中查询和设置属性的API1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。 2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。 3.数据属性的4个特性： 值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）。 4.存取器属性不具有值特性和可写性，它">
 
 
 
@@ -380,7 +380,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-16 19:13:27" itemprop="dateModified" datetime="2019-06-16T19:13:27+08:00">2019-06-16</time>
+                <time title="修改时间：2019-07-23 18:55:46" itemprop="dateModified" datetime="2019-07-23T18:55:46+08:00">2019-07-23</time>
               
             
           </span>
@@ -450,13 +450,11 @@
 
       
         <hr>
-<p>一.ES5中查询和设置属性的API</p>
-<p>1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。</p>
+<h3 id="一-ES5中查询和设置属性的API"><a href="#一-ES5中查询和设置属性的API" class="headerlink" title="一.ES5中查询和设置属性的API"></a>一.ES5中查询和设置属性的API</h3><p>1.可以通过这些API给原型对象添加方法，并将它们设置成不可枚举的，这让它们看起来更像内置方法。</p>
 <p>2.可以通过这些API给对象定义不能修改或删除的属性，借此 “锁定” 这个对象。</p>
 <p>3.数据属性的4个特性： <font color="red">值（value）、可写性（writable）、可枚举性（enumerable）和可配置性（configurable）</font>。</p>
 <p>4.存取器属性不具有值特性和可写性，它们的可写性是由setter方法存在与否决定的。因此存取器属性的4个特性是：读取（get）、写入（set）、可枚举性（numberable）和可配置性（configurable）。</p>
-<p>二.Object.getOwnPropertyDescriptor()</p>
-<p> 1.通过调用Object.getOwnPropertyDescriptor()可以获得某个对象特定属性的属性描述符：</p>
+<h3 id="二-Object-getOwnPropertyDescriptor"><a href="#二-Object-getOwnPropertyDescriptor" class="headerlink" title="二.Object.getOwnPropertyDescriptor()"></a>二.Object.getOwnPropertyDescriptor()</h3><p> 1.通过调用Object.getOwnPropertyDescriptor()可以获得某个对象特定属性的属性描述符：</p>
 <p>  例如：</p>
 <pre><code>  //返回{ value ： 1，writable ： true，enumerable：true，configurable：true }
 
@@ -475,8 +473,7 @@ Object.getOwmPropertyDescriptor(random,&quot;octet&quot;);
  Object.getOwnPropertyDescriptor({},&quot;toString&quot;); //undefined，继承属性
 
  Object.getOwnPropertyDescriptor()只能得到自有属性的描述符。要想获得继承属性的特性，需要遍历原型链
-</code></pre><p>三.Object.definePeoperty()</p>
-<p> 传入要修改的对象，要创建或修改的属性的名称以及属性描述符对象。</p>
+</code></pre><h3 id="三-Object-definePeoperty"><a href="#三-Object-definePeoperty" class="headerlink" title="三.Object.definePeoperty()"></a>三.Object.definePeoperty()</h3><p> 传入要修改的对象，要创建或修改的属性的名称以及属性描述符对象。</p>
 <pre><code>  var o = {}; //创建一个空对象
 
   //添加一个不可枚举的数据属性x，并赋值为1
@@ -513,8 +510,7 @@ Object.getOwmPropertyDescriptor(random,&quot;octet&quot;);
 
  传入Object.defineProperty()的属性描述符对象不必包含所有4个特性。对于新创建的属性来说， 默认的特性值是false或undefined。对于修改的已有
 ，默认的特性值没有做任何修改。注意：这个方法要么修改已有属性要么新建自有属性，但不能修改继承属性。
-</code></pre><p>四.Object.defineProperties()</p>
-<pre><code>同时修改或创建多个属性。第一个参数是要修改的对象，第二个参数是一个映射表，它包含要新建或修改的属性的名称，以及它们的属性描述符
+</code></pre><h3 id="四-Object-defineProperties"><a href="#四-Object-defineProperties" class="headerlink" title="四.Object.defineProperties()"></a>四.Object.defineProperties()</h3><pre><code>同时修改或创建多个属性。第一个参数是要修改的对象，第二个参数是一个映射表，它包含要新建或修改的属性的名称，以及它们的属性描述符
 
 例如：
 
@@ -577,8 +573,8 @@ var p = Object.defineProperties({},{
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/lltylq.github.io/2019/03/31/es5闭包/" rel="prev" title="闭包的理解">
-                闭包的理解 <i class="fa fa-chevron-right"></i>
+              <a href="/lltylq.github.io/2019/03/31/http协议/" rel="prev" title="http协议">
+                http协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,8 +619,17 @@ var p = Object.defineProperties({},{
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -687,6 +692,23 @@ var p = Object.defineProperties({},{
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-ES5中查询和设置属性的API"><span class="nav-number">1.</span> <span class="nav-text">一.ES5中查询和设置属性的API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-Object-getOwnPropertyDescriptor"><span class="nav-number">2.</span> <span class="nav-text">二.Object.getOwnPropertyDescriptor()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-Object-definePeoperty"><span class="nav-number">3.</span> <span class="nav-text">三.Object.definePeoperty()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-Object-defineProperties"><span class="nav-number">4.</span> <span class="nav-text">四.Object.defineProperties()</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

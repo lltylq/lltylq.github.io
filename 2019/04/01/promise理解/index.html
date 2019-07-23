@@ -98,12 +98,12 @@
 
 
 
-  <meta name="description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+  <meta name="description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1、什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 2、Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="es6重点的理解">
 <meta property="og:url" content="https://lltylq.github.io/2019/04/01/promise理解/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+<meta property="og:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1、什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 2、Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise1.png">
@@ -113,10 +113,10 @@
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise5.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise6.png">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise7.png">
-<meta property="og:updated_time" content="2019-07-20T14:27:52.403Z">
+<meta property="og:updated_time" content="2019-07-23T10:57:37.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="es6重点的理解">
-<meta name="twitter:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+<meta name="twitter:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1、什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 2、Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对">
 <meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png">
 
 
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 22:27:52" itemprop="dateModified" datetime="2019-07-20T22:27:52+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 18:57:37" itemprop="dateModified" datetime="2019-07-23T18:57:37+08:00">2019-07-23</time>
               
             
           </span>
@@ -459,11 +459,10 @@
 
       
         <hr>
-<hr>
-<p>promise理解</p>
+<p><strong>promise理解</strong></p>
 <p>同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间）</p>
-<h1 id="1-什么是Promise"><a href="#1-什么是Promise" class="headerlink" title="1.什么是Promise"></a>1.什么是Promise</h1><p>Promise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。</p>
-<h1 id="Promise对象有以下两个特点。"><a href="#Promise对象有以下两个特点。" class="headerlink" title="Promise对象有以下两个特点。"></a>Promise对象有以下两个特点。</h1><p>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是Promise这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
+<h3 id="1、什么是Promise"><a href="#1、什么是Promise" class="headerlink" title="1、什么是Promise"></a>1、什么是Promise</h3><p>Promise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。</p>
+<h3 id="2、Promise对象有以下两个特点。"><a href="#2、Promise对象有以下两个特点。" class="headerlink" title="2、Promise对象有以下两个特点。"></a>2、Promise对象有以下两个特点。</h3><p>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是Promise这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
 <p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。如果改变已经发生了，你再对Promise对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
 <h2 id><a href="#" class="headerlink" title></a><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png" alt></h2><p>下面先 new一个Promise</p>
 <pre><code>let p = new Promise(function(resolve, reject){
@@ -508,7 +507,7 @@ const promiseClick =()=&gt;{
     console.log(data);
 });
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise3.png" alt></p>
-<h1 id="reject的用法"><a href="#reject的用法" class="headerlink" title="reject的用法"></a>reject的用法</h1><p>以上是对promise的resolve用法进行了解释，相当于resolve是对promise成功时候的回调，它把promise的状态修改为</p>
+<h3 id="3、reject的用法"><a href="#3、reject的用法" class="headerlink" title="3、reject的用法"></a>3、reject的用法</h3><p>以上是对promise的resolve用法进行了解释，相当于resolve是对promise成功时候的回调，它把promise的状态修改为</p>
 <p>fullfiled，那么，reject就是失败的时候的回调，他把promise的状态修改为rejected，这样我们在then中就能捕捉到，然后执行“失败”情况的回调。</p>
 <pre><code>function promiseClick(){
         let p = new Promise(function(resolve, reject){
@@ -537,7 +536,7 @@ const promiseClick =()=&gt;{
         }
     );    
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise4.png" alt></p>
-<h1 id="catch的用法"><a href="#catch的用法" class="headerlink" title="catch的用法"></a>catch的用法</h1><p>与Promise对象方法then方法并行的一个方法就是catch,与try  catch类似，catch就是用来捕获异常的，也就是和then方法中接受的第二参数rejected的回调是一样的，如下：</p>
+<h3 id="4、catch的用法"><a href="#4、catch的用法" class="headerlink" title="4、catch的用法"></a>4、catch的用法</h3><p>与Promise对象方法then方法并行的一个方法就是catch,与try  catch类似，catch就是用来捕获异常的，也就是和then方法中接受的第二参数rejected的回调是一样的，如下：</p>
 <pre><code>        function promiseClick(){
     let p = new Promise(function(resolve, reject){
         setTimeout(function(){
@@ -565,7 +564,7 @@ promiseClick().then(
     console.log(&apos;catch失败执行回调抛出失败原因：&apos;,reason);
 });    
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise5.png" alt></p>
-<h1 id="promise-all用法"><a href="#promise-all用法" class="headerlink" title="promise.all用法"></a>promise.all用法</h1><p>promise.all[]–存放了多个promise对象–promise.all 中任何一个promise 出现错误的时候都会执行reject，导致其它正常返回的数据也无法使用了（应用比如页面通过多个ajax请求到后台，只有多个ajax请求到数据页面才能正常的显示，就可以使用这个方法）—执行的顺序严格按照数组里面的元素的执行顺序。</p>
+<h3 id="4、promise-all用法"><a href="#4、promise-all用法" class="headerlink" title="4、promise.all用法"></a>4、promise.all用法</h3><p>promise.all[]–存放了多个promise对象–promise.all 中任何一个promise 出现错误的时候都会执行reject，导致其它正常返回的数据也无法使用了（应用比如页面通过多个ajax请求到后台，只有多个ajax请求到数据页面才能正常的显示，就可以使用这个方法）—执行的顺序严格按照数组里面的元素的执行顺序。</p>
 <pre><code>            function promiseClick1(){
     let p = new Promise(function(resolve, reject){
         setTimeout(function(){
@@ -619,7 +618,7 @@ Promise
     });
 </code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise6.png" alt></p>
 <p>Promise.all来执行，all接收一个数组参数，这组参数为需要执行异步操作的所有方法，里面的值最终都算返回Promise对象。这样，三个异步操作的并行执行的，等到它们都执行完后才会进到then里面。那么，三个异步操作返回的数据哪里去了呢？都在then里面，all会把所有异步操作的结果放进一个数组中传给then，然后再执行then方法的成功回调将结果接收，结果如下：（分别执行得到结果，all统一执行完三个函数并将值存在一个数组里面返回给then进行回调输出）：</p>
-<h1 id="race的用法"><a href="#race的用法" class="headerlink" title="race的用法"></a>race的用法</h1><p>all是等所有的异步操作都执行完了再执行then方法，那么race方法就是相反的，谁先执行完成就先执行回调。</p>
+<h3 id="5、race的用法"><a href="#5、race的用法" class="headerlink" title="5、race的用法"></a>5、race的用法</h3><p>all是等所有的异步操作都执行完了再执行then方法，那么race方法就是相反的，谁先执行完成就先执行回调。</p>
 <pre><code>function promiseClick1(){
         let p = new Promise(function(resolve, reject){
             setTimeout(function(){
@@ -704,8 +703,8 @@ Promise
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lltylq.github.io/2019/04/01/执行上下文到作用域链的理解/" rel="next" title="执行上下文">
-                <i class="fa fa-chevron-left"></i> 执行上下文
+              <a href="/lltylq.github.io/2019/03/31/es5闭包/" rel="next" title="闭包的理解">
+                <i class="fa fa-chevron-left"></i> 闭包的理解
               </a>
             
           </div>
@@ -714,8 +713,8 @@ Promise
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/lltylq.github.io/2019/04/03/tcp三次握手4次挥手/" rel="prev" title="tcp3次握手4次挥手">
-                tcp3次握手4次挥手 <i class="fa fa-chevron-right"></i>
+              <a href="/lltylq.github.io/2019/04/01/执行上下文到作用域链的理解/" rel="prev" title="执行上下文">
+                执行上下文 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -844,7 +843,7 @@ Promise
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Promise"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Promise</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise对象有以下两个特点。"><span class="nav-number">2.</span> <span class="nav-text">Promise对象有以下两个特点。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reject的用法"><span class="nav-number">3.</span> <span class="nav-text">reject的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#catch的用法"><span class="nav-number">4.</span> <span class="nav-text">catch的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#promise-all用法"><span class="nav-number">5.</span> <span class="nav-text">promise.all用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#race的用法"><span class="nav-number">6.</span> <span class="nav-text">race的用法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是Promise"><span class="nav-number">1.</span> <span class="nav-text">1、什么是Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Promise对象有以下两个特点。"><span class="nav-number">2.</span> <span class="nav-text">2、Promise对象有以下两个特点。</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3、reject的用法"><span class="nav-number">1.</span> <span class="nav-text">3、reject的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、catch的用法"><span class="nav-number">2.</span> <span class="nav-text">4、catch的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、promise-all用法"><span class="nav-number">3.</span> <span class="nav-text">4、promise.all用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、race的用法"><span class="nav-number">4.</span> <span class="nav-text">5、race的用法</span></a></li></ol></li></div>
             
 
           </div>

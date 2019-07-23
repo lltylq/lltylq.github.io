@@ -98,19 +98,19 @@
 
 
 
-  <meta name="description" content="一、js中的ajaxajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从头再来,所以">
+  <meta name="description" content="1、ajax的作用​      ajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajax笔记">
 <meta property="og:url" content="https://lltylq.github.io/2019/04/03/ajax/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="一、js中的ajaxajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从头再来,所以">
+<meta property="og:description" content="1、ajax的作用​      ajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png?Expires=1563639393&OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&Signature=z%2Fv9t2zR%2BoNpBu%2BrbBgVQu7ERrs%3D">
-<meta property="og:updated_time" content="2019-07-20T15:16:44.018Z">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png">
+<meta property="og:updated_time" content="2019-07-23T10:49:56.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax笔记">
-<meta name="twitter:description" content="一、js中的ajaxajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从头再来,所以">
-<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png?Expires=1563639393&OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&Signature=z%2Fv9t2zR%2BoNpBu%2BrbBgVQu7ERrs%3D">
+<meta name="twitter:description" content="1、ajax的作用​      ajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png">
 
 
 
@@ -382,7 +382,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 23:16:44" itemprop="dateModified" datetime="2019-07-20T23:16:44+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 18:49:56" itemprop="dateModified" datetime="2019-07-23T18:49:56+08:00">2019-07-23</time>
               
             
           </span>
@@ -451,35 +451,23 @@
       
 
       
-        <h1 id="一、js中的ajax"><a href="#一、js中的ajax" class="headerlink" title="　一、js中的ajax"></a>　一、js中的ajax</h1><p>ajax(Asynchronous Javascript And XML)即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从头再来,所以,现在有了ajax你可以填一个表格就进行一次验证,而且页面并不会刷新.</p>
-<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png?Expires=1563639393&amp;OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&amp;Signature=z%2Fv9t2zR%2BoNpBu%2BrbBgVQu7ERrs%3D" alt></p>
-<p>对于ajax,他的核心技术是对象,它的整个作用过程其实是当前页面继续工作,它会自己开一个时空隧道和当前界面一起工作,就行两个平行空间一样,它的整个过程可以总结为先创建XMLHttpRequest对象,然后连接服务器,发送请求,最后接受服务器发送过来的数据,好了,XMLHttpRequest是一个可以让我们前端和后端连接起来的十分神奇的对象,我们首先来创建一个XMLHttpRequest对象</p>
-<pre><code>var xhr =null;
-        if(window.XMLHttpRequest){
-            xhr = new XMLHttpRequest();
-        }else{
-            xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);
-
-        }
-//这里进行的是针对IE浏览器的兼容性处理,在IE中,我们的xmlhttprequest对象就变成了activeobject,而且里边的参数是不能少的,IE就是这样倔强
-</code></pre><p>当我们拥有了一个xhr实例后,我们就可以进行向数据库中发送请求,这里我们先来看一下我们需要用的方法,open()方法是建立前端到服务器的请求,而send方法是向服务器发送请求,也就是说,当我们在叫外卖的时候,我们用的美团就像是open()方法,建立我们和店家的联系,而快递小哥就是我们的send()方法,他将我们的美味给我们送过来,这里我们先用get方法做一个示例,在下一块我们再区看一下我们的两种请求方法get和se的区别:</p>
-<pre><code>var url =&quot;index.php?id=1&quot;;
-xhr.open(&apos;get&apos;,url,&apos;true&apos;);//open中有三个参数,第一个参数用来指定使用get还是post方式提交,第二参数是指定要发送的url地址,第三个参数指定是否使用异步,第三个参数默认是true;
-xhr.send();
-</code></pre><p>　这是我们已经使用get方式向index.php发送了一个请求,我们穿过去的参数为”id=1”;那么我们先来看一下和get和post区别,get和post都是用来进行发送数据的方式,从字面意思来看,get(得到)是从数据库得到东西的请求方式,而post(发送)是要给服务器传送数据的,而且post方式传送数据是经过加密的,post传送的数据放在请求体里边,而get方式只有请求头,没有请求体,所以get也可以传给数据库少量数据,发送的方式是在url地址后边用?做表示,如果有多个参数用&amp;隔开,我们先来看一下post的用法:</p>
-<pre><code>var url = &quot;index.php&quot;;
-var data = &quot;id=1&quot;;
-xhr.open(&apos;post&apos;,url,true);
-xhr.setRequestHeader(&apos;Contenttype&apos;,&apos;application/x-www-form-urlencoded&apos;)//post请求需要设置请求头信息
-xhr.send(data);//在这里将数据发送过去,
-</code></pre><p>那么现在我们已经简单的向服务器端发送了请求,我们正常的一个流程是,服务器会根据我们的参数或者是它自身运算的结果来给我们返回数据,这里我们并不是一定要发送给数据库参数的,举个例子,服务器里有一个数组[“0”:”苹果”,”1”:”橘子”,”2”:”香蕉”],现在如果我们不传参,服务器会将这一个数组都return给我们,如果我们穿一个id=1,这时返回的数据就是橘子,我们要理解的就是,我们传的参数和数据对于我们获得数据只是一个辅助作用,真正起作用的还是服务器内部的结构,那么我们现在发送了请求后,我们面临一个问题,我们怎么判断请求是否发送成功以及服务器时候处理了我们的请求,还有如果服务器响应了,它返给我们的数据我们该怎么去获取呢?</p>
-<p>　　好的,让我们来看一下,xhr实例上有一个readystate属性,这个属性的代表着当前xmlHttpRequest的状态:</p>
+        <h3 id="1、ajax的作用"><a href="#1、ajax的作用" class="headerlink" title="　1、ajax的作用"></a>　1、ajax的作用</h3><p>​      <strong>ajax(Asynchronous Javascript And XML)</strong>即为异步的JavaScript和XML,顾名思义,这个技术是和我们当前页面刷新无关的,因为它是异步的,在没有ajax的时候,我们如果去请求数据库中的数据就要将当前页面进行刷新,最常用的你可以想到我们的表单验证部分,以前都是填完了所有的表单去一次性验证,像这样的注册界面,你填错了就要刷新页面从头再来,所以,现在有了ajax你可以填一个表格就进行一次验证,而且页面并不会刷新。</p>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/ajax/ajax%E5%9B%BE%E4%B8%80.png" alt></p>
+<h3 id="1、创建ajax对象"><a href="#1、创建ajax对象" class="headerlink" title="1、创建ajax对象"></a>1、创建ajax对象</h3><p>​         <strong>实例化ajax</strong>，对于ajax,他的核心技术是对象,它的整个作用过程其实是当前页面继续工作,它会自己开一个时空隧道和当前界面一起工作,就行两个平行空间一样,它的整个过程可以总结为先创建XMLHttpRequest对象,然后连接服务器,发送请求,最后接受服务器发送过来的数据,好了,XMLHttpRequest是一个可以让我们前端和后端连接起来的十分神奇的对象,我们首先来创建一个XMLHttpRequest对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr =<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">            xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//这里进行的是针对IE浏览器的兼容性处理,在IE中,我们的xmlhttprequest对象就变成了activeobject,而且里边的参数是不能少的,IE就是这样倔强</span></span><br></pre></td></tr></table></figure>
+<p>​        </p>
+<p>​         <strong>调用open和send方法</strong>当我们拥有了一个xhr实例后,我们就可以进行向数据库中发送请求,这里我们先来看一下我们需要用的方法,open()方法是建立前端到服务器的请求,而send方法是向服务器发送请求,也就是说,当我们在叫外卖的时候,我们用的美团就像是open()方法,建立我们和店家的联系,而快递小哥就是我们的send()方法,他将我们的美味给我们送过来,这里我们先用get方法做一个示例,在下一块我们再区看一下我们的两种请求方法get和se的区别:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url =<span class="string">"index.php?id=1"</span>;</span><br><span class="line">xhr.open(<span class="string">'get'</span>,url,<span class="string">'true'</span>);<span class="comment">//open中有三个参数,第一个参数用来指定使用get还是post方式提交,第二参数是指定要发送的url地址,第三个参数指定是否使用异步,第三个参数默认是true;</span></span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p>　       <strong>post与get</strong>这是我们已经使用get方式向index.php发送了一个请求,我们穿过去的参数为”id=1”;那么我们先来看一下和get和post区别,get和post都是用来进行发送数据的方式,从字面意思来看,get(得到)是从数据库得到东西的请求方式,而post(发送)是要给服务器传送数据的,而且post方式传送数据是经过加密的,post传送的数据放在请求体里边,而get方式只有请求头,没有请求体,所以get也可以传给数据库少量数据,发送的方式是在url地址后边用?做表示,如果有多个参数用&amp;隔开,我们先来看一下post的用法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">"index.php"</span>;</span><br><span class="line"><span class="keyword">var</span> data = <span class="string">"id=1"</span>;</span><br><span class="line">xhr.open(<span class="string">'post'</span>,url,<span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Contenttype'</span>,<span class="string">'application/x-www-form-urlencoded'</span>)<span class="comment">//post请求需要设置请求头信息</span></span><br><span class="line">xhr.send(data);<span class="comment">//在这里将数据发送过去,</span></span><br></pre></td></tr></table></figure>
+<p>​          那么现在我们已经简单的向服务器端发送了请求,我们正常的一个流程是,服务器会根据我们的参数或者是它自身运算的结果来给我们返回数据,这里我们并不是一定要发送给数据库参数的,举个例子,服务器里有一个数组[“0”:”苹果”,”1”:”橘子”,”2”:”香蕉”],现在如果我们不传参,服务器会将这一个数组都return给我们,如果我们穿一个id=1,这时返回的数据就是橘子,我们要理解的就是,我们传的参数和数据对于我们获得数据只是一个辅助作用,真正起作用的还是服务器内部的结构,那么我们现在发送了请求后,我们面临一个问题,我们怎么判断请求是否发送成功以及服务器时候处理了我们的请求,还有如果服务器响应了,它返给我们的数据我们该怎么去获取呢?</p>
+<p>　　好的,让我们来看一下,xhr实例上有一个<strong>readystate</strong>属性,这个属性的代表着当前xmlHttpRequest的状态:</p>
 <p>　　　　0:请求没有发出(在调用open之前)</p>
 <p>　　　　1:请求已经建立但还没有发出</p>
 <p>　　　　2:请求已经发出</p>
 <p>　　　　3:请求正在处理当中</p>
 <p>　　　　4:请求已经被服务器处理完毕,相应准备就绪</p>
-<p>　　每当readystate状态改变的时候,就会调用onreadystatechange()这个函数,所以我们可以在onreadystatechange进行相应状态的判断以及相应返回数据的获取,当readystate为4时,代表着我们的请求被服务器成功的执行,但我们还需要判断,我们的需要的数据是否成功被返回了呢?我们还有一个status属性,而这个status也有很多的状态码代表着不同的响应状态,其中200代表着响应成功,并且将响应的数据返回到了前端中:</p>
+<p>　　每当<strong>readystate状态</strong>改变的时候,就会调用onreadystatechange()这个函数,所以我们可以在onreadystatechange进行相应状态的判断以及相应返回数据的获取,当readystate为4时,代表着我们的请求被服务器成功的执行,但我们还需要判断,我们的需要的数据是否成功被返回了呢?我们还有一个status属性,而这个status也有很多的状态码代表着不同的响应状态,其中200代表着响应成功,并且将响应的数据返回到了前端中:</p>
 <pre><code>xhr.onreadystatechange = function(){
      if(xhr.readystate == 4){//请求已经成功被处理
          if(xhr.status == 200){//成功的从服务器得到了响应
@@ -487,7 +475,7 @@ xhr.send(data);//在这里将数据发送过去,
         }
     }
 }
-</code></pre><p>   得到了响应之后,responseText表示字符串形式的相应数据,responseXML表示获取XML形式的响应数据,getAllResponseHeader():获取所有的响应报头,这里我们来完整的写一个ajax请求:</p>
+</code></pre><p>  <strong>onreadystatechange事件</strong> 得到了响应之后,responseText表示字符串形式的相应数据,responseXML表示获取XML形式的响应数据,getAllResponseHeader():获取所有的响应报头,这里我们来完整的写一个ajax请求:</p>
 <pre><code>var xhr =null;
 if(window.XMLHttpRequest){
     xhr = new XMLHttpRequest();
@@ -536,8 +524,8 @@ xhr.onreadystatechange = function(){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lltylq.github.io/2019/04/03/http协议/" rel="next" title="http协议">
-                <i class="fa fa-chevron-left"></i> http协议
+              <a href="/lltylq.github.io/2019/04/03/tcp三次握手4次挥手/" rel="next" title="tcp3次握手4次挥手">
+                <i class="fa fa-chevron-left"></i> tcp3次握手4次挥手
               </a>
             
           </div>
@@ -676,7 +664,7 @@ xhr.onreadystatechange = function(){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、js中的ajax"><span class="nav-number">1.</span> <span class="nav-text">　一、js中的ajax</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、ajax的作用"><span class="nav-number">1.</span> <span class="nav-text">　1、ajax的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建ajax对象"><span class="nav-number">2.</span> <span class="nav-text">1、创建ajax对象</span></a></li></ol></div>
             
 
           </div>
