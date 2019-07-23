@@ -98,28 +98,26 @@
 
 
 
-  <meta name="description" content="1、栈（stack）和堆（heap） stack为自动分配内存空间，他由系统自动释放；而heap则是动态分配内存，大小也不一定会自动释放。  2、数据类型 js数据类型分为两种 基本数据类型（null,number,undefiend,string,blean,symbol(es6) 这些类型可以直接操作保存在变量中的实际值）   引用数据类型（Object ,Array，Function）在JS">
+  <meta name="description" content="title: vue的自定义指令date: 2019-04-7 19:20:39tags: vue和angular一样都自己带了自定义指令的方法，接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js基本数据类型和引用数据类型的区别及深浅拷贝">
-<meta property="og:url" content="https://lltylq.github.io/2019/04/09/js基本数据类型和引用数据类型的区别及深浅拷贝/index.html">
+<meta property="og:title" content="1369奔腾的骏马">
+<meta property="og:url" content="https://lltylq.github.io/2019/07/23/vue自定义指令/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="1、栈（stack）和堆（heap） stack为自动分配内存空间，他由系统自动释放；而heap则是动态分配内存，大小也不一定会自动释放。  2、数据类型 js数据类型分为两种 基本数据类型（null,number,undefiend,string,blean,symbol(es6) 这些类型可以直接操作保存在变量中的实际值）   引用数据类型（Object ,Array，Function）在JS">
+<meta property="og:description" content="title: vue的自定义指令date: 2019-04-7 19:20:39tags: vue和angular一样都自己带了自定义指令的方法，接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/MH%7D%7BN%60CDHO%24I7GAW_%7B3UUEX.png?q-sighttps://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/ZPIF4">
-<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%7ECCSQNNHHX%40SJ%7ELZ5LIS8%7EU.png">
-<meta property="og:image" content="https://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/MH%7D%7BN%60CDHO%24I7GAW_%7B3UUEX.png?q-sign-algorithm=sha1&q-ak=AKIDRAD45QGOp7Q7EE3taY1JaF6T3gtfxzF1&q-sign-time=1562685183;1562688783&q-key-time=1562685183;1562688783&q-header-list=&q-url-param-list=&q-signature=d23484a7d93123e567ce1daafa211561c8ee3c0a&x-cos-security-token=4fc1e7d230ba213f9bf39afd24a9c59b0f912d4310001">
-<meta property="og:updated_time" content="2019-07-20T14:27:50.240Z">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/vue/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4.png?Expires=1563869762&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=LEuL59j5Es0vjBxmrn8LcXmNKXs%3D">
+<meta property="og:updated_time" content="2019-07-23T07:16:42.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js基本数据类型和引用数据类型的区别及深浅拷贝">
-<meta name="twitter:description" content="1、栈（stack）和堆（heap） stack为自动分配内存空间，他由系统自动释放；而heap则是动态分配内存，大小也不一定会自动释放。  2、数据类型 js数据类型分为两种 基本数据类型（null,number,undefiend,string,blean,symbol(es6) 这些类型可以直接操作保存在变量中的实际值）   引用数据类型（Object ,Array，Function）在JS">
-<meta name="twitter:image" content="https://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/MH%7D%7BN%60CDHO%24I7GAW_%7B3UUEX.png?q-sighttps://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/ZPIF4">
+<meta name="twitter:title" content="1369奔腾的骏马">
+<meta name="twitter:description" content="title: vue的自定义指令date: 2019-04-7 19:20:39tags: vue和angular一样都自己带了自定义指令的方法，接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/vue/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4.png?Expires=1563869762&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=LEuL59j5Es0vjBxmrn8LcXmNKXs%3D">
 
 
 
 
 
 
-  <link rel="canonical" href="https://lltylq.github.io/2019/04/09/js基本数据类型和引用数据类型的区别及深浅拷贝/">
+  <link rel="canonical" href="https://lltylq.github.io/2019/07/23/vue自定义指令/">
 
 
 
@@ -129,7 +127,7 @@
   };
 </script>
 
-  <title>js基本数据类型和引用数据类型的区别及深浅拷贝 | 1369奔腾的骏马</title>
+  <title> | 1369奔腾的骏马</title>
   
 
 
@@ -324,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lltylq.github.io/lltylq.github.io/2019/04/09/js基本数据类型和引用数据类型的区别及深浅拷贝/">
+    <link itemprop="mainEntityOfPage" href="https://lltylq.github.io/lltylq.github.io/2019/07/23/vue自定义指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lq">
@@ -341,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js基本数据类型和引用数据类型的区别及深浅拷贝
+          <h1 class="post-title" itemprop="name headline">
 
               
             
@@ -367,24 +365,12 @@
                 
               
 
-              <time title="创建时间：2019-04-09 19:16:57" itemprop="dateCreated datePublished" datetime="2019-04-09T19:16:57+08:00">2019-04-09</time>
+              <time title="创建时间：2019-07-23 14:38:09 / 修改时间：15:16:42" itemprop="dateCreated datePublished" datetime="2019-07-23T14:38:09+08:00">2019-07-23</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-20 22:27:50" itemprop="dateModified" datetime="2019-07-20T22:27:50+08:00">2019-07-20</time>
               
             
           </span>
@@ -453,63 +439,33 @@
       
 
       
-        <p><strong>1、栈（stack）和堆（heap）</strong></p>
-<p>stack为自动分配内存空间，他由系统自动释放；而heap则是动态分配内存，大小也不一定会自动释放。</p>
-<p><img src="https://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/MH%7D%7BN%60CDHO%24I7GAW_%7B3UUEX.png?q-sighttps://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/ZPIF4" alt></p>
-<p><strong>2、数据类型</strong></p>
-<p>js数据类型分为两种</p>
-<p>基本数据类型（<strong><font color="red">null,number,undefiend,string,blean,symbol(es6)</font> 这些类型可以直接操作保存在变量中的实际值</strong>）  </p>
-<p>引用数据类型（<strong><font color="red">Object ,Array，Function</font></strong>）在JS中除了基本数据类型以外的都是对象，数据是对象，函数是对象，正则表达式是对象）</p>
-<hr>
-<p><strong>3、先看看基本数据类型</strong></p>
-<pre><code>var a =1;  
-
-var b =a;
-
-b=3;
-
-console.log(a);//1
-</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%7ECCSQNNHHX%40SJ%7ELZ5LIS8%7EU.png" alt></p>
-<p>以上代码中，重新给b赋值，不会影响 a的初始值—-基本数据类型新定义一个变量会存储在栈中。</p>
-<hr>
-<p><strong>4、引用数据类型</strong></p>
-<pre><code>var a = [1,2,3,4,5];
-var b = a;//传址 ,对象中传给变量的数据是引用类型的，会存储在堆中；
-var c = a[0];//传值，把对象中的属性/数组中的数组项赋值给变量，这时变量C是基本数据类型，存储在栈内存中；改变栈中的数据不会影响堆中的数据
-alert(b);//1,2,3,4,5
-alert(c);//1
-//改变数值 
-b[4] = 6;
-c = 7;
-alert(a[4]);//6
-alert(a[0]);//1
-</code></pre><p><img src="https://lqllty-1255848982.cos.ap-chengdu.myqcloud.com/MH%7D%7BN%60CDHO%24I7GAW_%7B3UUEX.png?q-sign-algorithm=sha1&amp;q-ak=AKIDRAD45QGOp7Q7EE3taY1JaF6T3gtfxzF1&amp;q-sign-time=1562685183;1562688783&amp;q-key-time=1562685183;1562688783&amp;q-header-list=&amp;q-url-param-list=&amp;q-signature=d23484a7d93123e567ce1daafa211561c8ee3c0a&amp;x-cos-security-token=4fc1e7d230ba213f9bf39afd24a9c59b0f912d4310001" alt></p>
-<p>上面代码就为我们展示了基本数据类型和引用数据类型的不同之处，引用数据类型的值是存储在堆中的，我们定义的变量里面只是存储了对象的引用地址。上面的两个变量person和student同时指向了一个对象，改变了name两者都改变了。</p>
-<p><strong>5、深度拷贝</strong></p>
-<p>前面的基本数据类型赋值就是一种深度拷贝，我们不希望父子对象之间产生关联，那么这时候可以用到深拷贝。既然属性值类型是数组和或象时只会传址，那么我们就用递归来解决这个问题，把父对象中所有属于对象的属性类型都遍历赋给子对象即可。测试代码如下：</p>
-<pre><code>function deepClone(obj) {
-  let objClone = Array.isArray(obj) ? [] : {}
-  if (obj &amp;&amp; typeof obj === &apos;object&apos;) {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        // 判断obj子元素是否为对象，如果是，递归复制
-        if (obj[key] &amp;&amp; typeof obj[key] === &apos;object&apos;) {
-          objClone[key] = deepClone(obj[key])
-        } else {
-          objClone[key] = obj[key]
-        }
-      }
-    }
-  }
-  return objClone
-}
-
-let a = [1,2,3,4]
-let b = deepClone(a)  // [1,2,3,4]
-a[0] = 2  // [2,2,3,4]
-b  //  [1,2,3,4]
-</code></pre><p><strong>6、浅度拷贝</strong></p>
-<p>在定义一个对象或数组时，变量存放的往往只是一个地址。当我们使用对象拷贝时，如果属性是对象或数组时，这时候我们传递的也只是一个地址。因此子对象在访问该属性时，会根据地址回溯到父对象指向的堆内存中，即父子对象发生了关联，两者的属性值会指向同一内存空间。</p>
+        <p>title: vue的自定义指令<br>date: 2019-04-7 19:20:39<br>tags:</p>
+<p>vue和angular一样都自己带了自定义指令的方法，接下来我说一下vue指令的用法。</p>
+<h3 id="1、定义全局的自定义指令"><a href="#1、定义全局的自定义指令" class="headerlink" title="1、定义全局的自定义指令"></a>1、定义全局的自定义指令</h3><p>全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。</p>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/vue/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4.png?Expires=1563869762&amp;OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&amp;Signature=LEuL59j5Es0vjBxmrn8LcXmNKXs%3D" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 注册一个全局自定义指令 `v-focus`</span><br><span class="line">Vue.directive(&apos;focus&apos;, &#123;</span><br><span class="line">  // 当被绑定的元素插入到 DOM 中时……</span><br><span class="line">  inserted: function (el,binding) &#123;</span><br><span class="line">                // 当前指令绑定的dom元素</span><br><span class="line">                //console.log(el);</span><br><span class="line">                // 指令传入的参数、修饰符、值  v-指令名称:参数.修饰符=值</span><br><span class="line">                // console.log(binding)</span><br><span class="line">    // 聚焦元素</span><br><span class="line">    el.focus()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="2、定义局部的指令"><a href="#2、定义局部的指令" class="headerlink" title="2、定义局部的指令"></a>2、定义局部的指令</h3><p>​    定义布局的指令，需要在我们的new Vue实例中将我们的directives相关的逻辑写入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        el:&apos;#app&apos;,</span><br><span class="line">        directives:&#123;</span><br><span class="line">            focus:&#123;</span><br><span class="line">                // 指令的定义</span><br><span class="line">                inserted: function (el) &#123;</span><br><span class="line">                    el.focus()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3、自定义指令中的钩子函数"><a href="#3、自定义指令中的钩子函数" class="headerlink" title="3、自定义指令中的钩子函数"></a>3、自定义指令中的钩子函数</h3><ul>
+<li>bind：只调用一次，用这个钩子函数可以定义一个绑定时执行初始化的动作（是在渲染dom元素之前的操作）</li>
+<li>inserted：被绑定元素插入父节点时调用 </li>
+<li>update：所在组件的 VNode 更新时调用，<strong>但是可能发生在其孩子的 VNode 更新之前</strong>。指令的值可能发生了改变也可能没有。 </li>
+<li>componentUpdated：所在组件的 VNode <strong>及其孩子的 VNode</strong> 全部更新时调用。 </li>
+</ul>
+<h4 id="3-1钩子函数的参数"><a href="#3-1钩子函数的参数" class="headerlink" title="3.1钩子函数的参数"></a>3.1钩子函数的参数</h4><ul>
+<li><strong>el</strong>：所绑定元素，可以直接操作DOM元素。</li>
+<li><strong>binding</strong>：一个独享，包含以下属性<ul>
+<li><strong>name</strong>：指令名</li>
+<li><strong>oldValue</strong>：指令绑定的前一个值，仅在update和componentUpdated钩子中可用。无论值是否改变都可用。 </li>
+<li>：指令的绑定值 </li>
+<li><strong>arg</strong>：传给指令的参数。例如v-focus:foo，arg 的值是”foo” </li>
+<li><strong>oldValue</strong>：指令绑定的前一个值，仅在update和componentUpdated钩子中可用。无论值是否改变都可用。 </li>
+<li><strong>modifiers</strong>：一个包含修饰符的对象。例如：v-my-directive.foo.bar, 修饰符对象 modifiers 的值是{ foo: true, bar: true }。 </li>
+<li><strong>vnode</strong>：Vue 编译生成的虚拟节点 </li>
+<li><strong>oldVnode</strong>：上一个虚拟节点，仅在update和componentUpdated 钩子中可用。 </li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -540,8 +496,8 @@ b  //  [1,2,3,4]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lltylq.github.io/2019/04/06/浅谈webpack/" rel="next" title="浅谈webpack入门">
-                <i class="fa fa-chevron-left"></i> 浅谈webpack入门
+              <a href="/lltylq.github.io/2019/04/11/跨域/" rel="next" title="跨域请求方法">
+                <i class="fa fa-chevron-left"></i> 跨域请求方法
               </a>
             
           </div>
@@ -549,10 +505,6 @@ b  //  [1,2,3,4]
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/lltylq.github.io/2019/04/11/跨域/" rel="prev" title="跨域请求方法">
-                跨域请求方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,8 +548,17 @@ b  //  [1,2,3,4]
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -660,6 +621,23 @@ b  //  [1,2,3,4]
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、定义全局的自定义指令"><span class="nav-number">1.</span> <span class="nav-text">1、定义全局的自定义指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、定义局部的指令"><span class="nav-number">2.</span> <span class="nav-text">2、定义局部的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、自定义指令中的钩子函数"><span class="nav-number">3.</span> <span class="nav-text">3、自定义指令中的钩子函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1钩子函数的参数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1钩子函数的参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
