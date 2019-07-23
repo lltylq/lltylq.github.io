@@ -98,20 +98,20 @@
 
 
 
-  <meta name="description" content="#Http的3次握手：  #  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。 原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从">
+  <meta name="description" content="Http的3次握手：  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。  原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从而保证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tcp3次握手4次挥手">
 <meta property="og:url" content="https://lltylq.github.io/2019/04/03/tcp三次握手4次挥手/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
-<meta property="og:description" content="#Http的3次握手：  #  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。 原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从">
+<meta property="og:description" content="Http的3次握手：  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。  原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从而保证">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E6%8F%A1%E6%89%8B.png?Expires=1563638620&OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&Signature=uZm6CiCm6AdrzUCbGvbrZvvobIw%3D">
-<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E6%8C%A5%E6%89%8B.png?Expires=1563638606&OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&Signature=z93N3NtQyvhDS90%2BvuAgEQrgB14%3D">
-<meta property="og:updated_time" content="2019-07-20T15:07:24.524Z">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/tcp/%E6%8F%A1%E6%89%8B.png?Expires=1563870048&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=l4C%2BcMe53zdG7NFl50fDMvTjz6o%3D">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/tcp/%E6%8C%A5%E6%89%8B.png?Expires=1563870021&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=CoaUp1%2F8NJ1yShsCkDz9tCkafTc%3D">
+<meta property="og:updated_time" content="2019-07-23T07:23:08.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tcp3次握手4次挥手">
-<meta name="twitter:description" content="#Http的3次握手：  #  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。 原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从">
-<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E6%8F%A1%E6%89%8B.png?Expires=1563638620&OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&Signature=uZm6CiCm6AdrzUCbGvbrZvvobIw%3D">
+<meta name="twitter:description" content="Http的3次握手：  第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。 第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。 第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。  原因： 　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从而保证">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/tcp/%E6%8F%A1%E6%89%8B.png?Expires=1563870048&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=l4C%2BcMe53zdG7NFl50fDMvTjz6o%3D">
 
 
 
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 23:07:24" itemprop="dateModified" datetime="2019-07-20T23:07:24+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-23 15:23:08" itemprop="dateModified" datetime="2019-07-23T15:23:08+08:00">2019-07-23</time>
               
             
           </span>
@@ -452,32 +452,34 @@
       
 
       
-        <p>#Http的3次握手：  #</p>
-<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E6%8F%A1%E6%89%8B.png?Expires=1563638620&amp;OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&amp;Signature=uZm6CiCm6AdrzUCbGvbrZvvobIw%3D" alt></p>
-<p>第一次握手：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。</p>
-<p>第二次握手：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。</p>
-<p>第三次握手：客户端再次响应服务端一个ACK确认，表示我已经准备好了。</p>
-<p>原因：</p>
+        <h2 id="Http的3次握手："><a href="#Http的3次握手：" class="headerlink" title="Http的3次握手："></a>Http的3次握手：</h2><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/tcp/%E6%8F%A1%E6%89%8B.png?Expires=1563870048&amp;OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&amp;Signature=l4C%2BcMe53zdG7NFl50fDMvTjz6o%3D" alt></p>
+<ul>
+<li><strong>第一次握手</strong>：客户端发送一个带SYN的TCP报文到服务器，表示客户端想要和服务器端建立连接。</li>
+<li><strong>第二次握手</strong>：服务器端接收到客户端的请求，返回客户端报文，这个报文带有SYN和ACK确认标示，访问客户端是否准备好。</li>
+<li><strong>第三次握手</strong>：客户端再次响应服务端一个ACK确认，表示我已经准备好了。</li>
+</ul>
+<p><strong>原因：</strong></p>
 <p>　1)为了确保连接建立的双方彼此完全清楚对方状态(如初始序列号和接收窗口大小)，从而保证可靠、稳定地建立连接</p>
 <p>　2)通过三次握手建立连接还可以有效地预防过期、失效的连接请求到达后，导致无效连接的建立</p>
 <p>　3)两次握手建立连接是不可行的，因为网络存在数据丢失；第二次握手控制段可能丢失，这样主动发起连接的一方由于没有收到第二次握手控制段，则无法建立连接，而接受连接建立的一方则认为连接已经建立，从而出现无效链接</p>
 <p> 有种情况就是客户端发起了请求，但是过了超时时间又重发的连接请求，而第一个请求并没有丢失，服务端收到syn后，发送了ACK，确认了连接，客户端收到ACK也确认了连接。 这时第二次发送的连接请求阻塞在网络上，但没有丢失，并最终在客户端断开连接后，到达了服务器，此时服务器会理解为新的连接请求，并发送ACK确认连接建立 这一连接并不属于有效连接，属于半连接，但是服务器已经为该连接分配了资源；这类半连接的存在会消耗服务器的资源，降低服务器性能，甚至导致拒绝服务；</p>
-<p>#Http的4次挥手：  #</p>
-<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E6%8C%A5%E6%89%8B.png?Expires=1563638606&amp;OSSAccessKeyId=TMP.hXBtpu9qFxU7qfw2yF3MESUrrtfVb6rnnFLmqHwvsRvgdguv8pY44M5W3R4ho2CVrx3LMmL8TtVVVGC3j3TFRMKD7MfAYorKYb6Vwi4VEoQ8Ts5PTLuU5ah3vWCj3G.tmp&amp;Signature=z93N3NtQyvhDS90%2BvuAgEQrgB14%3D" alt></p>
-<p>第一次挥手：TCP发送一个FIN(结束)，用来关闭客户端到服务器端的连接。</p>
-<p>第二次挥手：服务器端收到这个FIN后发回一个ACK确认标示，确认收到。</p>
-<p>第三次挥手：服务器端发送一个FIN到客户端，服务器端关闭客户端的连接。</p>
-<p>第四次挥手：客户端发送ACK报文确认，这样关闭完成。</p>
+<h3 id="Http的4次挥手："><a href="#Http的4次挥手：" class="headerlink" title="Http的4次挥手："></a>Http的4次挥手：</h3><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/tcp/%E6%8C%A5%E6%89%8B.png?Expires=1563870021&amp;OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&amp;Signature=CoaUp1%2F8NJ1yShsCkDz9tCkafTc%3D" alt></p>
+<ul>
+<li>第一次挥手：TCP发送一个FIN(结束)，用来关闭客户端到服务器端的连接。</li>
+<li>第二次挥手：服务器端收到这个FIN后发回一个ACK确认标示，确认收到。</li>
+<li>第三次挥手：服务器端发送一个FIN到客户端，服务器端关闭客户端的连接。</li>
+<li>第四次挥手：客户端发送ACK报文确认，这样关闭完成。</li>
+</ul>
 <p>MSL是最大段生存时间，是任何TCP段被丢弃前在网络内“存活”的最长时间<br>TCP协议规范规定的MSL是2min，但实际系统在实现TCP时设定的时间有所不同</p>
 <pre><code>客户在TIME_WAIT状态之所以要等待2MSL时间才真正释放连接，一方面是为了以防最后一次ACK段丢失，会导致服务器重发FIN，这样在客户端真正释放连接前还可以再次发送ACK段，尽可能确保服务器尽快释放连接；另一方面是为了保证在2MSL期间，该连接的本地端点地址(IP+PORT)不被再次使用，避免可能的较早连接请求到达，被误认为时新连接请求
-</code></pre><h1 id="常见的问题"><a href="#常见的问题" class="headerlink" title="常见的问题"></a>常见的问题</h1><p>1、tcp客户端建立连接为啥不能2次？</p>
-<p>现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
-<p>2、tcp建立连接需要3次，释放为啥却需要4次？</p>
-<p>现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
-<p>3、为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</p>
-<p>虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
-<p>4、 如果已经建立了连接，但是客户端突然出现故障了怎么办？</p>
-<p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+</code></pre><h2 id="常见的问题"><a href="#常见的问题" class="headerlink" title="常见的问题"></a>常见的问题</h2><p><strong>1、tcp客户端建立连接为啥不能2次？</strong></p>
+<p>​       现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
+<p><strong>2、tcp建立连接需要3次，释放为啥却需要4次？</strong></p>
+<p>​       现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
+<p><strong>3、为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</strong></p>
+<p>​        虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+<p><strong>4、 如果已经建立了连接，但是客户端突然出现故障了怎么办？</strong></p>
+<p>​       TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒钟发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
 
       
     </div>
@@ -508,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lltylq.github.io/2019/04/03/ajax/" rel="next" title="ajax笔记">
-                <i class="fa fa-chevron-left"></i> ajax笔记
+              <a href="/lltylq.github.io/2019/04/01/执行上下文到作用域链的理解/" rel="next" title="执行上下文">
+                <i class="fa fa-chevron-left"></i> 执行上下文
               </a>
             
           </div>
@@ -648,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的问题"><span class="nav-number">1.</span> <span class="nav-text">常见的问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http的3次握手："><span class="nav-number">1.</span> <span class="nav-text">Http的3次握手：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http的4次挥手："><span class="nav-number">1.1.</span> <span class="nav-text">Http的4次挥手：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的问题"><span class="nav-number">2.</span> <span class="nav-text">常见的问题</span></a></li></ol></div>
             
 
           </div>
