@@ -100,15 +100,15 @@
 
   <meta name="description" content="vue和angular一样都自己带了自定义指令的方法，vue的自定义指令分为全局的和局部的接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定义指令 `v-focus`Vue.directive(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue自定义指">
+<meta property="og:title" content="vue自定义指令">
 <meta property="og:url" content="https://lltylq.github.io/2019/04/09/vue自定义指令/index.html">
 <meta property="og:site_name" content="1369奔腾的骏马">
 <meta property="og:description" content="vue和angular一样都自己带了自定义指令的方法，vue的自定义指令分为全局的和局部的接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定义指令 `v-focus`Vue.directive(">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/vue/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4.png?Expires=1563869762&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=LEuL59j5Es0vjBxmrn8LcXmNKXs%3D">
-<meta property="og:updated_time" content="2019-07-23T07:32:07.099Z">
+<meta property="og:updated_time" content="2019-07-23T07:41:48.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue自定义指">
+<meta name="twitter:title" content="vue自定义指令">
 <meta name="twitter:description" content="vue和angular一样都自己带了自定义指令的方法，vue的自定义指令分为全局的和局部的接下来我说一下vue指令的用法。 1、定义全局的自定义指令全局中自定义指令：在main.js的头部自动以指令 ，下面就注册了一个元素调用 v-focus,就能在元素插入dom的时候，自动获取焦点 。  123456789101112// 注册一个全局自定义指令 `v-focus`Vue.directive(">
 <meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/vue/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4.png?Expires=1563869762&OSSAccessKeyId=TMP.hXekNc5xNUgz7qc5vX8Sk2LWTYvd1spdG3bf72S9xVSGxx6dQftw4AwWfqNZwRvBRfswZLu5mqkDrY2emGWUHUjYTTHh2QH9RWjDDkWgGLQnGMWDdZxBSxayD8u7XS.tmp&Signature=LEuL59j5Es0vjBxmrn8LcXmNKXs%3D">
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>vue自定义指 | 1369奔腾的骏马</title>
+  <title>vue自定义指令 | 1369奔腾的骏马</title>
   
 
 
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vue自定义指
+          <h1 class="post-title" itemprop="name headline">vue自定义指令
 
               
             
@@ -382,7 +382,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-23 15:32:07" itemprop="dateModified" datetime="2019-07-23T15:32:07+08:00">2019-07-23</time>
+                <time title="修改时间：2019-07-23 15:41:48" itemprop="dateModified" datetime="2019-07-23T15:41:48+08:00">2019-07-23</time>
               
             
           </span>
@@ -459,8 +459,8 @@
 <h3 id="2、定义局部的指令"><a href="#2、定义局部的指令" class="headerlink" title="2、定义局部的指令"></a>2、定义局部的指令</h3><p>​    定义布局的指令，需要在我们的new Vue实例中将我们的directives相关的逻辑写入。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">        el:&apos;#app&apos;,</span><br><span class="line">        directives:&#123;</span><br><span class="line">            focus:&#123;</span><br><span class="line">                // 指令的定义</span><br><span class="line">                inserted: function (el) &#123;</span><br><span class="line">                    el.focus()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="3、自定义指令中的钩子函数"><a href="#3、自定义指令中的钩子函数" class="headerlink" title="3、自定义指令中的钩子函数"></a>3、自定义指令中的钩子函数</h3><ul>
-<li>bind：只调用一次，用这个钩子函数可以定义一个绑定时执行初始化的动作（是在渲染dom元素之前的操作）</li>
-<li>inserted：被绑定元素插入父节点时调用 </li>
+<li>bind：只调用一次，用这个钩子函数可以定义一个绑定时执行初始化的动作（是在渲染dom元素之前的操作）。</li>
+<li>inserted：被绑定元素插入父节点时调用 。</li>
 <li>update：所在组件的 VNode 更新时调用，<strong>但是可能发生在其孩子的 VNode 更新之前</strong>。指令的值可能发生了改变也可能没有。 </li>
 <li>componentUpdated：所在组件的 VNode <strong>及其孩子的 VNode</strong> 全部更新时调用。 </li>
 </ul>
@@ -472,8 +472,7 @@
 <li>：指令的绑定值 </li>
 <li><strong>arg</strong>：传给指令的参数。例如v-focus:foo，arg 的值是”foo” </li>
 <li><strong>oldValue</strong>：指令绑定的前一个值，仅在update和componentUpdated钩子中可用。无论值是否改变都可用。 </li>
-<li><strong>modifiers</strong>：一个包含修饰符的对象。例如：v-my-directive.foo.bar, 修饰符对象 modifiers 的值是{ foo: true, bar: true }。 </li>
-<li><strong>vnode</strong>：Vue 编译生成的虚拟节点 </li>
+<li><strong>modifiers</strong>：一个包含修饰符的对象。例如：v-my-directive.foo.bar, 修饰符对象 modifiers 的值是{ foo: true, bar: true }。</li>
 <li><strong>oldVnode</strong>：上一个虚拟节点，仅在update和componentUpdated 钩子中可用。 </li>
 </ul>
 </li>
