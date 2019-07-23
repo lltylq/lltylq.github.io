@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lltylq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/lltylq.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/lltylq.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/lltylq.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/lltylq.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/lltylq.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/lltylq.github.io/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js继承机制">
+<meta property="og:url" content="https://lltylq.github.io/2019/03/28/js核心继承的理解/index.html">
+<meta property="og:site_name" content="1369奔腾的骏马">
+<meta property="og:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%8E%9F%E5%9E%8B%E9%93%BE.png">
+<meta property="og:updated_time" content="2019-07-20T14:09:58.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js继承机制">
+<meta name="twitter:description" content="ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), call 和 apply 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。 1、首先先讲讲call的继承属性 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。 在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lltylq.github.io/2019/03/28/js核心继承的理解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>js继承机制 | 1369奔腾的骏马</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/lltylq.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">1369奔腾的骏马</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">好记性不如烂键盘</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://lltylq.github.io/" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lltylq.github.io/lltylq.github.io/2019/03/28/js核心继承的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lq">
+      <meta itemprop="description" content="好记性不如烂键盘">
+      <meta itemprop="image" content="/lltylq.github.io/images/collect_2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1369奔腾的骏马">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js继承机制
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-28 19:16:57" itemprop="dateCreated datePublished" datetime="2019-03-28T19:16:57+08:00">2019-03-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-20 22:09:58" itemprop="dateModified" datetime="2019-07-20T22:09:58+08:00">2019-07-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ECMAScript规范为所有函数都包含两个方法(这两个方法非继承而来), <font color="red">call 和 apply</font> 。这两个函数都是在特定的作用域中调用函数,能改变函数的作用域，实际上是改变函数体内 this 的值 。</p>
+<p>1、首先先讲讲call的继承属性</p>
+<p>call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。</p>
+<p>在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继承，类似于 Java 中的写法。下例中，使用 Food 和 Toy 构造函数创建的对象实例都会拥有在 Product 构造函数中添加的 name 属性和 price 属性,但 category 属性是在各自的构造函数中定义的。（下面代码中toy和food分别继承了produce的name和price的属性）</p>
+<pre><code>function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = &apos;food&apos;;
+}
+
+function Toy(name, price) {
+  Product.call(this, name, price);
+  this.category = &apos;toy&apos;;
+}
+
+var cheese = new Food(&apos;feta&apos;, 5);
+var fun = new Toy(&apos;robot&apos;, 40);
+
+//重新定义一个空对象,将product构造函数的属性给obj，这里就可以理解this的指向问题了
+ var obj ={}
+Product.call(obj,&apos;张三&apos;,55)
+console.log(obj)
+</code></pre><p>我们之前讲过原型的优先级是比较低的，其实也是原型链的原因，对象会首先在自己的地盘找，找不到才会从原型链上找，而且最外层的原型链是object，所以上面的意思其实下面就是这样的：</p>
+<p>1 拷贝继承</p>
+<p>首先来看个栗子：父类有属性name,age， 方法show,子类有属性name,age,sex，怎么能让子类直接继承父类的属性和方法呢？</p>
+<p>对象复制会存在引用问题，也就是说现在两个对象指向的是同一个地址，其中一个原型的一些东西的更改会影响另一个，这肯定不是我们所希望的。所以我们通过拷贝赋值，来避免引用。</p>
+<pre><code>function Create(name,age){ 
+        this.name = name;
+        this.age = age;
+    }
+    Create.prototype.show = function(){ 
+        alert(this.name);     
+    }
+    function Create2(name,age,sex){ 
+        Create.call(this,name,age);
+        this.sex = sex;
+    }
+    extend(Create2.prototype ,Create.prototype ); //函数之间赋值不会存在引用 
+    Create2.prototype.showJob = function(){}; //不会影响父类
+    var p2 = new Create2(&apos;hua&apos;,11,&apos;men&apos;);
+    p2.show();   // hua
+    function extend(obj1,obj2){   
+          for(var attr in obj2){   //循环遍历对象下面的属性和方法，进行赋值，需要知道的是函数之间的复制是不存在引用的，所以方法之间就不存在引用了
+               obj1[attr] = obj2[attr];
+         }
+    }
+</code></pre><p>3 类式继承（利用构造函数继承，一句话即可完成继承）</p>
+<pre><code>function Aaa(){   //父类
+    this.name = [1,2,3];
+}    
+Aaa.prototype.showName = function(){
+    alert( this.name );
+};
+function Bbb(){ }//子类
+Bbb.prototype = new Aaa(); 
+//这句话覆盖了Bbb所有的原型，所以构造函数指向改变(这里不懂的话，参建之前的博客，JS面向对象之创建对象中讲到的constructor)
+//这句话就可以让子类找到父类的方法和属性
+var b1 = new Bbb();
+b1.showName();//弹出[1,2,3]
+alert(b1.constructor);//Aaa 可见构造函数指向变了
+b1.name.push(4);// 改变b1.name
+var b2 = new Bbb(); 
+alert(b2.name) // [1,2,3,4]  由此可见属性存在引用
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/2.png" alt></p>
+<p>Bbb.prototype = new Aaa(); 这句话，使得图上的a1和Bbb的原型指向了同一个地方，所以当指向b1.showName();这句的时候，它现在自己下寻找有没有这个方法，没有就通过原型链去原型下找，发现也没有，又通过原型链去父级那边找，最终就找到了。</p>
+<hr>
+<p>4 对象继承</p>
+<p>从本质上讲，object()对传入其中的对象执行了一次浅复制</p>
+<pre><code>var person = {
+    name:&apos;Annika&apos;,
+    friendes:[&apos;Alice&apos;,&apos;Joyce&apos;]
+};
+​
+var anotherPerson = object(person);
+anotherPerson.name = &apos;Greg&apos;;
+anotherPerson.friendes.push(&apos;Rob&apos;);
+​
+var yetAnotherPerson = object(person);
+yetAnotherPerson.name = &apos;Linda&apos;;
+yetAnotherPerson.friendes.push(&apos;Sophia&apos;);
+​
+console.log(person.friends);   //[&apos;Alice&apos;,&apos;Joyce&apos;,&apos;Rob&apos;,&apos;Sophia&apos;]
+</code></pre><p>​<br>ES5新增Object.create规范了原型式继承，接收两个参数，一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象，在传入一个参数的情况下，<font color="red"><strong>Object.create()</strong></font>和<font color="red"><strong>object()</strong></font>行为相同。</p>
+<pre><code>var person = {
+    name:&apos;Annika&apos;,
+    friendes:[&apos;Alice&apos;,&apos;Joyce&apos;]
+};
+​
+var anotherPerson = object.create(person,{
+    name:{
+        value:&quot;Greg&quot;
+    }
+});
+​
+\\用这种方法指定的任何属性都会覆盖掉原型对象上的同名属性
+console.log(anotherPerson.name);   \\Greg
+</code></pre><p>ES5的继承可以用下图来概括：</p>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt></p>
+<p>5 <font color="red"><strong>es6继承</strong></font></p>
+<p>ES6 class的继承与java的继承大同小异，如果学过java的话应该很容易理解，都是通过extends关键字继承。</p>
+<pre><code>class Animal{
+    constructor(color){
+        this.color = color;
+    };
+}
+class Bear extends Animal{
+    constructor(){
+        super();
+    }
+}
+</code></pre><p>其余的就不多说了，这里着重讲一下ES6中super关键字的使用。</p>
+<p>ES6子类继承父类，必须在constructor函数的第一行调用super();之后才能使用关键字this，这是因为子类中没有自己的this对象，而是继承父类的this对象，然后才能为这个this添加相应的属性和方法。不然就会报错，相当于Parent.apply(this);而SE5则正好和这个相反，它先创造了自己的this对象，然后才添加父类的方法属性到这个对象里。</p>
+<p>super在子类中一般有三种作用</p>
+<p>作为父类的构造函数调用，就是上面所说的那种方法。</p>
+<p>在普通方法中，作为父类的实例调用</p>
+<p>在静态方法中，作为父类调用</p>
+<hr>
+<p>在普通方法中调用，此时指向父类的实例</p>
+<pre><code>class Animal{
+    constructor(color){
+        this.color = color;
+    }
+    run(){
+        return &quot;run&quot;;
+    }
+}
+class Bear extends Animal{
+    constructor(){
+        super();
+        console.log(super.run());
+    }
+}
+</code></pre><p>在静态方法中调用，此时指向父类</p>
+<pre><code>class Animal{
+    constructor(color){
+        this.color = color;
+    }
+    run(){
+        return &quot;run&quot;;
+    }
+    static run(){
+        return &quot;static run&quot;
+    }
+}
+class Bear extends Animal{
+    constructor(){
+        super();
+        console.log(super.run());//run
+    }
+    static go(){
+        super.run();//static run
+    }
+}
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/03/26/npm包管理器/" rel="next" title="深入了解为啥需要npm">
+                <i class="fa fa-chevron-left"></i> 深入了解为啥需要npm
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/03/28/原型和原型链/" rel="prev" title="原型和原型链的理解">
+                原型和原型链的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/lltylq.github.io/images/collect_2.jpg" alt="lq">
+            
+              <p class="site-author-name" itemprop="name">lq</p>
+              <div class="site-description motion-element" itemprop="description">好记性不如烂键盘</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/lltylq.github.io/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lq</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数"></span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lltylq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/lltylq.github.io/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/lltylq.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/lltylq.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

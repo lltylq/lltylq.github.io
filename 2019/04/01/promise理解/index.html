@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lltylq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/lltylq.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/lltylq.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/lltylq.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/lltylq.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/lltylq.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/lltylq.github.io/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6重点的理解">
+<meta property="og:url" content="https://lltylq.github.io/2019/04/01/promise理解/index.html">
+<meta property="og:site_name" content="1369奔腾的骏马">
+<meta property="og:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise1.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise2.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise3.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise4.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise5.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise6.png">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise7.png">
+<meta property="og:updated_time" content="2019-07-20T14:27:52.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es6重点的理解">
+<meta name="twitter:description" content="promise理解 同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间） 1.什么是PromisePromise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。 Promise对象有以下两个特点。（1）对象的状态不受外界影响。Promise对象">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lltylq.github.io/2019/04/01/promise理解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>es6重点的理解 | 1369奔腾的骏马</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/lltylq.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">1369奔腾的骏马</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">好记性不如烂键盘</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://lltylq.github.io/" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lltylq.github.io/lltylq.github.io/2019/04/01/promise理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lq">
+      <meta itemprop="description" content="好记性不如烂键盘">
+      <meta itemprop="image" content="/lltylq.github.io/images/collect_2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1369奔腾的骏马">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">es6重点的理解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 19:20:39" itemprop="dateCreated datePublished" datetime="2019-04-01T19:20:39+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-20 22:27:52" itemprop="dateModified" datetime="2019-07-20T22:27:52+08:00">2019-07-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<hr>
+<p>promise理解</p>
+<p>同步和异步：ajax是异步操作的（如果是同步的话前面的请求没有回来，后面的请求都要等着，这样浪费了很多的时间）</p>
+<h1 id="1-什么是Promise"><a href="#1-什么是Promise" class="headerlink" title="1.什么是Promise"></a>1.什么是Promise</h1><p>Promise 是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法。</p>
+<h1 id="Promise对象有以下两个特点。"><a href="#Promise对象有以下两个特点。" class="headerlink" title="Promise对象有以下两个特点。"></a>Promise对象有以下两个特点。</h1><p>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是Promise这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
+<p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。如果改变已经发生了，你再对Promise对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promiseB.png" alt></h2><p>下面先 new一个Promise</p>
+<pre><code>let p = new Promise(function(resolve, reject){
+        //做一些异步操作
+        setTimeout(function(){
+            console.log(&apos;执行完成Promise&apos;);
+            resolve(&apos;要返回的数据可以任何数据例如接口返回数据&apos;);
+        }, 2000);
+    });
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise1.png" alt></p>
+<p>其执行过程是：执行了一个异步操作，也就是setTimeout，2秒后，输出“执行完成”，并且调用resolve方法。</p>
+<p>注意！我只是new了一个对象，并没有调用它，我们传进去的函数就已经执行了，这是需要注意的一个细节。所以我们用Promise的时候一般是包在一个函数中，在需要的时候去运行这个函数，如：</p>
+<pre><code>&lt;div onClick={promiseClick}&gt;开始异步请求&lt;/div&gt;
+
+const promiseClick =()=&gt;{
+     console.log(&apos;点击方法被调用&apos;)
+     let p = new Promise(function(resolve, reject){
+        //做一些异步操作
+        setTimeout(function(){
+                console.log(&apos;执行完成Promise&apos;);
+                resolve(&apos;要返回的数据可以任何数据例如接口返回数据&apos;);
+            }, 2000);
+        });
+        return p
+    }
+</code></pre><p>刷新页面的时候是没有任何反映的，但是点击后控制台打出</p>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise2.png" alt></p>
+<p>先是方法被调用起床执行了promise,最后执行了promise的then方法，then方法是一个函数接受一个参数是接受resolve返回的数据这事就输出了‘要返回的数据可以任何数据例如接口返回数据’</p>
+<p>这时候你应该有所领悟了，原来then里面的函数就跟我们平时的回调函数一个意思，能够在promiseClick这个异步任务执行完成之后被执行。这就是Promise的作用了，简单来讲，就是能把原来的回调写法分离出来，在异步操作执行完后，用链式调用的方式执行回调函数。</p>
+<p>你可能会觉得在这个和写一个回调函数没有什么区别；那么，如果有多层回调该怎么办？如果callback也是一个异步操作，而且执行完后也需要有相应的回调函数，该怎么办呢？总不能再定义一个callback2，然后给callback传进去吧。而Promise的优势在于，可以在then方法中继续写Promise对象并返回，然后继续调用then来进行回调操作。</p>
+<p>所以：精髓在于：Promise只是能够简化层层回调的写法，而实质上，Promise的精髓是“状态”，用维护状态、传递状态的方式来使得回调函数能够及时调用，它比传递callback函数要简单、灵活的多。所以使用Promise的正确场</p>
+<pre><code>promiseClick()
+.then(function(data){
+    console.log(data);
+    return runAsync2();
+})
+.then(function(data){
+    console.log(data);
+    return runAsync3();
+})
+.then(function(data){
+    console.log(data);
+});
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise3.png" alt></p>
+<h1 id="reject的用法"><a href="#reject的用法" class="headerlink" title="reject的用法"></a>reject的用法</h1><p>以上是对promise的resolve用法进行了解释，相当于resolve是对promise成功时候的回调，它把promise的状态修改为</p>
+<p>fullfiled，那么，reject就是失败的时候的回调，他把promise的状态修改为rejected，这样我们在then中就能捕捉到，然后执行“失败”情况的回调。</p>
+<pre><code>function promiseClick(){
+        let p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                console.log(&apos;随机数生成的值：&apos;,num)
+                if(num&lt;=10){
+                    resolve(num);
+                }
+                else{
+                    reject(&apos;数字太于10了即将执行失败回调&apos;);
+                }
+            }, 2000);
+           })
+           return p
+       }
+
+    promiseClick().then(
+        function(data){
+            console.log(&apos;resolved成功回调&apos;);
+            console.log(&apos;成功回调接受的值：&apos;,data);
+        }, 
+        function(reason, data){
+            console.log(&apos;rejected失败回调&apos;);
+            console.log(&apos;失败执行回调抛出失败原因：&apos;,reason);
+        }
+    );    
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise4.png" alt></p>
+<h1 id="catch的用法"><a href="#catch的用法" class="headerlink" title="catch的用法"></a>catch的用法</h1><p>与Promise对象方法then方法并行的一个方法就是catch,与try  catch类似，catch就是用来捕获异常的，也就是和then方法中接受的第二参数rejected的回调是一样的，如下：</p>
+<pre><code>        function promiseClick(){
+    let p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+            console.log(&apos;随机数生成的值：&apos;,num)
+            if(num&lt;=10){
+                resolve(num);
+            }
+            else{
+                reject(&apos;数字太于10了即将执行失败回调&apos;);
+            }
+        }, 2000);
+       })
+       return p
+   }
+
+promiseClick().then(
+    function(data){
+        console.log(&apos;resolved成功回调&apos;);
+        console.log(&apos;成功回调接受的值：&apos;,data);
+    }
+)
+.catch(function(reason, data){
+    console.log(&apos;catch到rejected失败回调&apos;);
+    console.log(&apos;catch失败执行回调抛出失败原因：&apos;,reason);
+});    
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise5.png" alt></p>
+<h1 id="promise-all用法"><a href="#promise-all用法" class="headerlink" title="promise.all用法"></a>promise.all用法</h1><p>promise.all[]–存放了多个promise对象–promise.all 中任何一个promise 出现错误的时候都会执行reject，导致其它正常返回的数据也无法使用了（应用比如页面通过多个ajax请求到后台，只有多个ajax请求到数据页面才能正常的显示，就可以使用这个方法）—执行的顺序严格按照数组里面的元素的执行顺序。</p>
+<pre><code>            function promiseClick1(){
+    let p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+            console.log(&apos;随机数生成的值：&apos;,num)
+            if(num&lt;=10){
+                resolve(num);
+            }
+            else{
+                reject(&apos;数字太于10了即将执行失败回调&apos;);
+            }
+        }, 2000);
+       })
+       return p
+   }
+   function promiseClick2(){
+    let p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+            console.log(&apos;随机数生成的值：&apos;,num)
+            if(num&lt;=10){
+                resolve(num);
+            }
+            else{
+                reject(&apos;数字太于10了即将执行失败回调&apos;);
+            }
+        }, 2000);
+       })
+       return p
+   }
+   function promiseClick3(){
+    let p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+            console.log(&apos;随机数生成的值：&apos;,num)
+            if(num&lt;=10){
+                resolve(num);
+            }
+            else{
+                reject(&apos;数字太于10了即将执行失败回调&apos;);
+            }
+        }, 2000);
+       })
+       return p
+   }
+
+Promise
+    .all([promiseClick3(), promiseClick2(), promiseClick1()])
+    .then(function(results){
+        console.log(results);
+    });
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise6.png" alt></p>
+<p>Promise.all来执行，all接收一个数组参数，这组参数为需要执行异步操作的所有方法，里面的值最终都算返回Promise对象。这样，三个异步操作的并行执行的，等到它们都执行完后才会进到then里面。那么，三个异步操作返回的数据哪里去了呢？都在then里面，all会把所有异步操作的结果放进一个数组中传给then，然后再执行then方法的成功回调将结果接收，结果如下：（分别执行得到结果，all统一执行完三个函数并将值存在一个数组里面返回给then进行回调输出）：</p>
+<h1 id="race的用法"><a href="#race的用法" class="headerlink" title="race的用法"></a>race的用法</h1><p>all是等所有的异步操作都执行完了再执行then方法，那么race方法就是相反的，谁先执行完成就先执行回调。</p>
+<pre><code>function promiseClick1(){
+        let p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                console.log(&apos;2s随机数生成的值：&apos;,num)
+                if(num&lt;=10){
+                    resolve(num);
+                }
+                else{
+                    reject(&apos;2s数字太于10了即将执行失败回调&apos;);
+                }
+            }, 2000);
+           })
+           return p
+       }
+       function promiseClick2(){
+        let p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                console.log(&apos;3s随机数生成的值：&apos;,num)
+                if(num&lt;=10){
+                    resolve(num);
+                }
+                else{
+                    reject(&apos;3s数字太于10了即将执行失败回调&apos;);
+                }
+            }, 3000);
+           })
+           return p
+       }
+       function promiseClick3(){
+        let p = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                console.log(&apos;4s随机数生成的值：&apos;,num)
+                if(num&lt;=10){
+                    resolve(num);
+                }
+                else{
+                    reject(&apos;4s数字太于10了即将执行失败回调&apos;);
+                }
+            }, 4000);
+           })
+           return p
+       }
+
+    Promise
+        .race([promiseClick3(), promiseClick2(), promiseClick1()])
+        .then(function(results){
+            console.log(results);
+        },function(reason){
+            console.log(reason);
+        });
+</code></pre><p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/promise7.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/04/01/执行上下文到作用域链的理解/" rel="next" title="执行上下文">
+                <i class="fa fa-chevron-left"></i> 执行上下文
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/04/03/tcp三次握手4次挥手/" rel="prev" title="tcp3次握手4次挥手">
+                tcp3次握手4次挥手 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/lltylq.github.io/images/collect_2.jpg" alt="lq">
+            
+              <p class="site-author-name" itemprop="name">lq</p>
+              <div class="site-description motion-element" itemprop="description">好记性不如烂键盘</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/lltylq.github.io/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Promise"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Promise</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise对象有以下两个特点。"><span class="nav-number">2.</span> <span class="nav-text">Promise对象有以下两个特点。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reject的用法"><span class="nav-number">3.</span> <span class="nav-text">reject的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#catch的用法"><span class="nav-number">4.</span> <span class="nav-text">catch的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#promise-all用法"><span class="nav-number">5.</span> <span class="nav-text">promise.all用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#race的用法"><span class="nav-number">6.</span> <span class="nav-text">race的用法</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lq</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数"></span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lltylq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/lltylq.github.io/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/lltylq.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/lltylq.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lltylq.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/lltylq.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/lltylq.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/lltylq.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/lltylq.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/lltylq.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/lltylq.github.io/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1、打包工具webpack简介 webpack是一个module bundler（模块打包工具）所谓的模块就是在平时的前端开发中，用到一些静态资源，如JavaScript、CSS、图片等文件，webpack就将这些静态资源文件称之为模块。 webpack支持AMD和CommonJS，以及其他的一些模块系统，并且兼容多种JS书写规范，可以处理模块间的依赖关系，所以具有更强大的JS模块化的功能，它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈webpack入门">
+<meta property="og:url" content="https://lltylq.github.io/2019/04/06/浅谈webpack/index.html">
+<meta property="og:site_name" content="1369奔腾的骏马">
+<meta property="og:description" content="1、打包工具webpack简介 webpack是一个module bundler（模块打包工具）所谓的模块就是在平时的前端开发中，用到一些静态资源，如JavaScript、CSS、图片等文件，webpack就将这些静态资源文件称之为模块。 webpack支持AMD和CommonJS，以及其他的一些模块系统，并且兼容多种JS书写规范，可以处理模块间的依赖关系，所以具有更强大的JS模块化的功能，它">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/5616361-ed937aca813f5117.jpg">
+<meta property="og:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/7%40I%5B%5DM_WHXW%5B1FML4%40%7DEF8R.png">
+<meta property="og:updated_time" content="2019-07-20T14:57:09.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈webpack入门">
+<meta name="twitter:description" content="1、打包工具webpack简介 webpack是一个module bundler（模块打包工具）所谓的模块就是在平时的前端开发中，用到一些静态资源，如JavaScript、CSS、图片等文件，webpack就将这些静态资源文件称之为模块。 webpack支持AMD和CommonJS，以及其他的一些模块系统，并且兼容多种JS书写规范，可以处理模块间的依赖关系，所以具有更强大的JS模块化的功能，它">
+<meta name="twitter:image" content="https://1369tylq1.oss-cn-beijing.aliyuncs.com/5616361-ed937aca813f5117.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lltylq.github.io/2019/04/06/浅谈webpack/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>浅谈webpack入门 | 1369奔腾的骏马</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/lltylq.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">1369奔腾的骏马</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">好记性不如烂键盘</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-about"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/lltylq.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://lltylq.github.io/" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lltylq.github.io/lltylq.github.io/2019/04/06/浅谈webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lq">
+      <meta itemprop="description" content="好记性不如烂键盘">
+      <meta itemprop="image" content="/lltylq.github.io/images/collect_2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1369奔腾的骏马">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅谈webpack入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-06 19:20:39" itemprop="dateCreated datePublished" datetime="2019-04-06T19:20:39+08:00">2019-04-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-20 22:57:09" itemprop="dateModified" datetime="2019-07-20T22:57:09+08:00">2019-07-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/5616361-ed937aca813f5117.jpg" alt></p>
+<p>1、<strong>打包工具webpack简介</strong></p>
+<p>webpack是一个module bundler（模块打包工具）所谓的模块就是在平时的前端开发中，用到一些静态资源，如JavaScript、CSS、图片等文件，webpack就将这些静态资源文件称之为模块。 webpack支持AMD和CommonJS，以及其他的一些模块系统，并且兼容多种JS书写规范，可以处理模块间的依赖关系，所以具有更强大的JS模块化的功能，它能对静态资源进行统一的管理以及打包发布。 它在很多地方都能替代Grunt和Gulp，因为它能够编译打包CSS，做CSS预处理，对JS的方言进行编译，打包图片，代码压缩等等。</p>
+<ol>
+<li>webpack能够将入口的js文件下，相关联的静态资源打包成一个文件。</li>
+<li>webpack不仅能够打包js，向一些浏览器不能直接编译的脚本（typeScript），它也能将其打包成浏览器能够运行的格式。</li>
+<li>webpack能够降低服务器的负担，webpack将所有的静态资源打包成了一个文件，当我们运行项目时减少http请求资源文件，加快页面的访问效率比如vue是组件化的页面，组件多请求也很多，因此我们把的静态资源打包后就会加快我们的访问效率。</li>
+</ol>
+<p>我们可以直接使用 require(XXX) 的形式来引入各模块，即使它们可能需要经过编译（比如JSX和sass），但我们无须在上面花费太多心思，因为 webpack 有着各种健全的加载器（loader）在默默处理这些事情。</p>
+<p><strong>Grunt和Gulp的工作方式</strong>：在一个配置文件中，指明对某些文件进行编译，组合，压缩等任务的具体步骤，运行之后自动逐步完成设定的任务。 </p>
+<p><img src="https://1369tylq1.oss-cn-beijing.aliyuncs.com/7%40I%5B%5DM_WHXW%5B1FML4%40%7DEF8R.png" alt></p>
+<p>2、相比Grunt和Gulp，webpack具有如下的一些优势：</p>
+<ul>
+<li>对 CommonJS 、AMD 、ES6的语法做了兼容；</li>
+<li>对js、css、图片等资源文件都支持打包；</li>
+<li>串联式模块加载器以及插件机制,让其具有更好的灵活性和扩展性，例如提供对CoffeeScript、ES6的支持；</li>
+<li>有独立的配置文件webpack.config.js；</li>
+<li>可以将代码切割成不同的chunk，实现按需加载，降低了初始化时间；</li>
+<li>支持 SourceUrls 和 SourceMaps，易于调试；</li>
+<li>具有强大的Plugin接口，大多是内部插件，使用起来比较灵活；</li>
+<li>webpack 使用异步 IO 并具有多级缓存，使得 webpack 很快且在增量编译上更加快</li>
+</ul>
+<p>在webpack看来，所有的资源文件都是模块，只是处理的方式不同。</p>
+<p>webpack解决的需求点是：如何更好地加载前端模块。</p>
+<p>一、首先以一个最简单的实例体验一下最简单的webpack打包文件：</p>
+<p>1、安装node.js</p>
+<p>访问<a href="http://nodejs.org/dist/v7.8.0/win-x64/node.exe下载node.exe到目录D:/nodejs文件夹下。" target="_blank" rel="noopener">http://nodejs.org/dist/v7.8.0/win-x64/node.exe下载node.exe到目录D:/nodejs文件夹下。</a></p>
+<p>2、安装npm</p>
+<p>访问<a href="http://nodejs.org/dist/npm/npm-1.4.9.zip下载npm，并解压到D:/nodejs文件夹下。" target="_blank" rel="noopener">http://nodejs.org/dist/npm/npm-1.4.9.zip下载npm，并解压到D:/nodejs文件夹下。</a></p>
+<p>3、创建package.json文件</p>
+<p>使用npm init命令可以自动创建package.json文件。</p>
+<p>这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等。</p>
+<p>输入这个命令后，终端会问一系列诸如项目名称，项目描述，作者等信息，如果不准备在npm中发布模块，这些问题的答案都不重要，回车默认即可。</p>
+<p>4、安装webpack</p>
+<p>使用npm install –save -dev webpack命令在本项目中安装webpack作为依赖包或使用npm install -g webpack命令全局安装webpack作为依赖包。</p>
+<p>5、文件创建</p>
+<p>在项目文件夹webpack中创建两个文件夹——app文件夹和public文件夹，app文件夹用来存放原始数据和将写的JavaScript模块（包括两个js文件Greeter.js和main.js，public文件夹用来存放准备给浏览器读取的数据（包括使用webpack生成的打包后的js文件及一个index.html文件）。</p>
+<p>Greeter.js：</p>
+<pre><code>module.exports = function() {
+      var greet = document.createElement(&apos;div&apos;);
+      greet.textContent = &quot;Hi there and greetings!&quot;;
+      return greet;
+};
+</code></pre><p>main.js：</p>
+<pre><code> var greeter = require(&apos;./Greeter.js&apos;);
+document.getElementById(&apos;root&apos;).appendChild(greeter());
+</code></pre><p>index.html：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+      &lt;head&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;div id=&apos;root&apos;&gt;&lt;/div&gt;
+        &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+      &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>6、使用webpack</p>
+<p>只需要指定一个入口文件，webpack将自动识别项目所依赖的其它文件，不过需要注意的是如果webpack没有进行全局安装，那么在终端中使用此命令时，需要额外指定其在node_modules中的地址。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/04/05/事件冒泡、捕获、委托/" rel="next" title="事件委托、事件冒泡、事件捕获">
+                <i class="fa fa-chevron-left"></i> 事件委托、事件冒泡、事件捕获
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lltylq.github.io/2019/04/09/js基本数据类型和引用数据类型的区别及深浅拷贝/" rel="prev" title="js基本数据类型和引用数据类型的区别及深浅拷贝">
+                js基本数据类型和引用数据类型的区别及深浅拷贝 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/lltylq.github.io/images/collect_2.jpg" alt="lq">
+            
+              <p class="site-author-name" itemprop="name">lq</p>
+              <div class="site-description motion-element" itemprop="description">好记性不如烂键盘</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/lltylq.github.io/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lq</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数"></span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lltylq.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lltylq.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/lltylq.github.io/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/lltylq.github.io/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/lltylq.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/lltylq.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/lltylq.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
